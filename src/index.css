@@ -19,6 +19,7 @@ body {
 
 .app {
   height: 100vh;
+  width: 60vw;
   background: white;
 }
 
@@ -235,4 +236,68 @@ body {
   background: #3336ff;
   color: #fff;
   cursor: pointer;
+}
+
+.app .loginBox .loginHeaderBox {
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  background: #000;
+  color: #fff;
+}
+
+.app .loginBox .loginHeaderBox h2 {
+  margin-right: 1rem;
+}
+
+.app .loginBox .loginHeaderBox img {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 1rem;
+}
+
+.app .loginBox .signInSignUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.app .loginBox .signInSignUpForm input {
+  width: 80%;
+  margin-top: 1rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+}
+
+.app .loginBox .signInSignUpForm .checkBox input {
+  width: 5%;
+  margin: 0;
+  height: 1rem;
+}
+
+.app .loginBox .signInSignUpForm .checkBox {
+  display: flex;
+  flex: row;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.app .loginBox .signInSignUpForm button {
+  width: 80%;
+  background: #97c9f1;
+  border: none;
+  color: #fff;
+  height: 2.5rem;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.app .loginBox .signInSignUpForm button:hover {
+  background-color: darkblue;
 }
