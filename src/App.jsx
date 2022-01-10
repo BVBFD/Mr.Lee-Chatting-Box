@@ -1,29 +1,37 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
 import Header from "../src/components/Header.jsx";
 import AllTweets from "./pages/AllTweets.jsx";
 import Login from "./pages/Login.jsx";
 import MyTweets from "./pages/MyTweets.jsx";
+import { useState } from "react";
 
-const App = (props) => {
+const App = ({ authService }) => {
+  const [user, setUser] = useState({});
+  console.log(user);
+
   return (
     <div className="app">
       <Routes>
-        <Route path={"/"} element={<Login />} />
         <Route
-          path={"/:username"}
+          path={"/"}
+          element={<Login authService={authService} setUser={setUser} />}
+        />
+        <Route
+          path={`/${user.id}`}
           element={
             <>
-              <Header />
+              <Header user={user} />
               <AllTweets />
             </>
           }
         />
         <Route
-          path={"/:username/mytweets"}
+          path={`/${user.id}/mytweets`}
           element={
             <>
-              <Header />
+              <Header user={user} />
               <MyTweets />
             </>
           }

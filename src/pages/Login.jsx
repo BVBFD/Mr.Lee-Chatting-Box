@@ -1,18 +1,41 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useEffect } from "react";
 
-const Login = (props) => {
-  const [inUpBtnIndex, setInUpBtnIndex] = useState(false);
+const Login = ({ authService, setUser }) => {
+  let [inUpBtnIndex, setInUpBtnIndex] = useState(false);
+  let [loginData, setLoginData] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoginData(authService.loginData);
+  }, [loginData]);
+
   const signIn = (event) => {
     event.preventDefault();
-    console.log("signIn");
-    navigate("/:username");
+    const id = document.querySelector("input[name=id]").value;
+    const password = document.querySelector("input[name=password]").value;
+    authService
+      .getLoginData(id, password)
+      .then((data) => {
+        navigate(`/${data.id.toString()}`);
+        setUser(data);
+      })
+      .catch(console.error);
   };
+
   const signUp = (event) => {
     event.preventDefault();
-    console.log("signUp");
+    const id = document.querySelector("input[name=id]").value;
+    const password = document.querySelector("input[name=password]").value;
+    const name = document.querySelector("input[name=name]").value;
+    const email = document.querySelector("input[name=Email]").value;
+    const url = document.querySelector("input[name=url]").value;
+    authService
+      .postLoginData(id, password, name, email, url)
+      .then((alert) => alert)
+      .catch(console.error);
     setInUpBtnIndex(false);
     navigate("/");
   };
