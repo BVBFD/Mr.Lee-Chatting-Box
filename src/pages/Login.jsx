@@ -1,8 +1,21 @@
 import React from "react";
-import { useState } from "react/cjs/react.development";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Login = (props) => {
   const [inUpBtnIndex, setInUpBtnIndex] = useState(false);
+  const navigate = useNavigate();
+  const signIn = (event) => {
+    event.preventDefault();
+    console.log("signIn");
+    navigate("/:username");
+  };
+  const signUp = (event) => {
+    event.preventDefault();
+    console.log("signUp");
+    setInUpBtnIndex(false);
+    navigate("/");
+  };
 
   return (
     <div className="loginBox">
@@ -33,7 +46,9 @@ const Login = (props) => {
           <input type="checkbox" name="signUp" id="signUp" />
           <label htmlFor="signUp">Create a new account?</label>
         </div>
-        <button type="submit">{!inUpBtnIndex ? `Sing In` : `Sing Up`}</button>
+        <button type="submit" onClick={!inUpBtnIndex ? signIn : signUp}>
+          {!inUpBtnIndex ? `Sing In` : `Sing Up`}
+        </button>
       </form>
     </div>
   );
