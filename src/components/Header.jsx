@@ -10,7 +10,7 @@ const Header = ({ user }) => {
           <h2>Mr.Lee Chatting Box</h2>
         </Link>
         <Link to={`/${user.id}/mytweets`}>
-          <h5>@Mr.Lee Seong Eun</h5>
+          <h5>@{user.name}</h5>
         </Link>
       </div>
       <nav className="navbar">

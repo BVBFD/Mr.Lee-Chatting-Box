@@ -32,11 +32,13 @@ const Login = ({ authService, setUser }) => {
     const name = document.querySelector("input[name=name]").value;
     const email = document.querySelector("input[name=Email]").value;
     const url = document.querySelector("input[name=url]").value;
+    let checkBox = document.querySelector("#signUp");
     authService
       .postLoginData(id, password, name, email, url)
       .then((alert) => alert)
       .catch(console.error);
     setInUpBtnIndex(false);
+    checkBox.checked = false;
     navigate("/");
   };
 
