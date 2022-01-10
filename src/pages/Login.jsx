@@ -33,17 +33,19 @@ const Login = (props) => {
         {inUpBtnIndex && (
           <input type="url" name="url" placeholder="Profile Image URL" />
         )}
-        <div
-          className="checkBox"
-          onClick={() => {
-            if (!inUpBtnIndex) {
-              setInUpBtnIndex(true);
-            } else {
-              setInUpBtnIndex(false);
-            }
-          }}
-        >
-          <input type="checkbox" name="signUp" id="signUp" />
+        <div className="checkBox">
+          <input
+            onChange={() => {
+              if (!inUpBtnIndex) {
+                setInUpBtnIndex(true);
+              } else {
+                setInUpBtnIndex(false);
+              }
+            }}
+            type="checkbox"
+            name="signUp"
+            id="signUp"
+          />
           <label htmlFor="signUp">Create a new account?</label>
         </div>
         <button type="submit" onClick={!inUpBtnIndex ? signIn : signUp}>
