@@ -10,10 +10,8 @@ const authService = new AuthService();
 const tweetService = new TweetService();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App tweetService={tweetService} authService={authService} />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <App tweetService={tweetService} authService={authService} />
+  </BrowserRouter>,
   document.getElementById("root")
 );

@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react/cjs/react.development";
 import Editbar from "../components/Editbar";
 import TweetCards from "../components/TweetCards";
 
@@ -12,7 +11,12 @@ const AllTweets = ({ user, tweets, tweetService, setTweets }) => {
         tweets={tweets}
         setTweets={setTweets}
       />
-      <TweetCards user={user} tweets={tweets} />
+      <TweetCards
+        tweetService={tweetService}
+        setTweets={setTweets}
+        user={user}
+        tweets={tweets}
+      />
     </div>
   );
 };

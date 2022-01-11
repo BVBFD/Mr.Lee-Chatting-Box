@@ -15,6 +15,7 @@ const Editbar = ({ user, tweetService, tweets, setTweets }) => {
       .then((tweet) => setTweets([...tweets, tweet]))
       .catch(console.error);
   };
+
   return (
     <form onSubmit={uploadTweet} className="editForm">
       <input

@@ -1,6 +1,5 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { useEffect } from "react";
 import Header from "../src/components/Header.jsx";
 import AllTweets from "./pages/AllTweets.jsx";
 import Login from "./pages/Login.jsx";
@@ -10,16 +9,11 @@ import { useState } from "react";
 const App = ({ authService, tweetService }) => {
   const [user, setUser] = useState({});
   const [tweets, setTweets] = useState([]);
-  console.log(user);
-  console.log(tweets);
 
-  useEffect(async () => {
-    tweetService
-      .getTweet()
-      .then((tweets) => setTweets(tweets))
-      .catch(console.error);
-    // setTweets(tweetService.tweets);
-  }, [tweets, user]);
+  tweetService
+    .getTweet()
+    .then((tweets) => setTweets(tweets))
+    .catch(console.error);
 
   return (
     <div className="app">
@@ -47,7 +41,12 @@ const App = ({ authService, tweetService }) => {
           element={
             <>
               <Header user={user} />
-              <MyTweets user={user} tweets={tweets} />
+              <MyTweets
+                user={user}
+                tweets={tweets}
+                setTweets={setTweets}
+                tweetService={tweetService}
+              />
             </>
           }
         />
