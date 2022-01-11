@@ -95,6 +95,27 @@ body {
   border-radius: 15px;
   box-shadow: 0 5px 10px #666;
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.app .allTweetsBox .tweetCardsUl .tweetCardLi button {
+  position: absolute;
+  background: transparent;
+  color: #3336ff;
+  border: none;
+  cursor: pointer;
+}
+
+.app .allTweetsBox .tweetCardsUl .tweetCardLi .deleteBtn {
+  top: 0.2rem;
+  right: 1rem;
+  font-size: x-large;
+}
+
+.app .allTweetsBox .tweetCardsUl .tweetCardLi .editBtn {
+  bottom: 0.5rem;
+  right: 0.9rem;
+  font-size: large;
 }
 
 .app .allTweetsBox .tweetCardsUl .tweetCardLi .nameImgDate {
@@ -175,26 +196,47 @@ body {
   align-items: center;
 }
 
-.app .myTweetsBox .tweetCardsUl {
+.app .myTweetsBox ul {
   width: 90%;
   margin-top: 1rem;
 }
 
-.app .myTweetsBox .tweetCardsUl .tweetCardLi {
+.app .myTweetsBox ul .tweetCardLi {
   width: 100%;
   background: #fff;
   padding: 1rem;
   border-radius: 15px;
   box-shadow: 0 5px 10px #666;
   margin-bottom: 1rem;
+  position: relative;
 }
 
-.app .myTweetsBox .tweetCardsUl .tweetCardLi .nameImgDate {
+.app .myTweetsBox ul .tweetCardLi button {
+  position: absolute;
+  background: transparent;
+  color: #3336ff;
+  border: none;
+  cursor: pointer;
+}
+
+.app .myTweetsBox ul .tweetCardLi .deleteBtn {
+  top: 0.2rem;
+  right: 1rem;
+  font-size: x-large;
+}
+
+.app .myTweetsBox ul .tweetCardLi .editBtn {
+  bottom: 0.5rem;
+  right: 0.9rem;
+  font-size: large;
+}
+
+.app .myTweetsBox ul .tweetCardLi .nameImgDate {
   display: flex;
   justify-content: start;
 }
 
-.app .myTweetsBox .tweetCardsUl .tweetCardLi .nameImgDate a {
+.app .myTweetsBox ul .tweetCardLi .nameImgDate a {
   font-size: 0.8rem;
   font-weight: bolder;
   color: #3336ff;
@@ -202,34 +244,34 @@ body {
   align-self: center;
 }
 
-.app .myTweetsBox .tweetCardsUl .tweetCardLi .nameImgDate span:nth-child(2) {
+.app .myTweetsBox ul .tweetCardLi .nameImgDate span:nth-child(2) {
   font-size: 1.2rem;
   font-weight: bolder;
   margin: 0 0.3rem;
   align-self: center;
 }
 
-.app .myTweetsBox .tweetCardsUl .tweetCardLi .nameImgDate span:nth-child(3) {
+.app .myTweetsBox ul .tweetCardLi .nameImgDate span:nth-child(3) {
   font-size: 0.8rem;
   font-weight: bolder;
   color: #3336ff;
   margin: 0 0.3rem;
 }
 
-.app .myTweetsBox .tweetCardsUl .tweetCardLi .nameImgDate span:nth-child(4) {
+.app .myTweetsBox ul .tweetCardLi .nameImgDate span:nth-child(4) {
   font-size: 0.4rem;
   font-weight: bolder;
   align-self: center;
 }
 
-.app .myTweetsBox .tweetCardsUl .tweetCardLi .nameImgDate img {
+.app .myTweetsBox ul .tweetCardLi .nameImgDate img {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.app .myTweetsBox .tweetCardsUl .tweetCardLi .textBox {
+.app .myTweetsBox ul .tweetCardLi .textBox {
   display: flex;
   justify-content: start;
   align-items: center;

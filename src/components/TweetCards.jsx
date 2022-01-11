@@ -1,10 +1,12 @@
 import React from "react";
 import TweetCard from "./TweetCard";
 
-const TweetCards = (props) => {
+const TweetCards = ({ user, tweets }) => {
   return (
     <ul className="tweetCardsUl">
-      <TweetCard />
+      {tweets.map((tweet) => {
+        return <TweetCard user={user} tweet={tweet} />;
+      })}
     </ul>
   );
 };

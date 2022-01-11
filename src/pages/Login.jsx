@@ -19,7 +19,7 @@ const Login = ({ authService, setUser }) => {
     authService
       .getLoginData(id, password)
       .then((data) => {
-        navigate(`/${data.id.toString()}`);
+        navigate(`/${id}`);
         setUser(data);
       })
       .catch(console.error);

@@ -7,9 +7,19 @@ import Login from "./pages/Login.jsx";
 import MyTweets from "./pages/MyTweets.jsx";
 import { useState } from "react";
 
-const App = ({ authService }) => {
+const App = ({ authService, tweetService }) => {
   const [user, setUser] = useState({});
+  const [tweets, setTweets] = useState([]);
   console.log(user);
+  console.log(tweets);
+
+  useEffect(async () => {
+    tweetService
+      .getTweet()
+      .then((tweets) => setTweets(tweets))
+      .catch(console.error);
+    // setTweets(tweetService.tweets);
+  }, [tweets, user]);
 
   return (
     <div className="app">
@@ -19,20 +29,25 @@ const App = ({ authService }) => {
           element={<Login authService={authService} setUser={setUser} />}
         />
         <Route
-          path={`/${user.id}`}
+          path={`/:id`}
           element={
             <>
               <Header user={user} />
-              <AllTweets />
+              <AllTweets
+                user={user}
+                tweets={tweets}
+                setTweets={setTweets}
+                tweetService={tweetService}
+              />
             </>
           }
         />
         <Route
-          path={`/${user.id}/mytweets`}
+          path={`/:id/mytweets`}
           element={
             <>
               <Header user={user} />
-              <MyTweets />
+              <MyTweets user={user} tweets={tweets} />
             </>
           }
         />
