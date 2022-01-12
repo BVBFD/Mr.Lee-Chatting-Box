@@ -8,7 +8,7 @@ const MyTweets = ({ user, tweets, tweetService, setTweets }) => {
   return (
     <div className="myTweetsBox">
       <ul>
-        {tweets.reverse().map((tweet) => {
+        {tweets.map((tweet) => {
           return id === tweet.id ? (
             <TweetCard
               tweetService={tweetService}

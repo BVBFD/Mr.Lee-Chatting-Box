@@ -162,6 +162,35 @@ body {
   padding: 0.1rem 3rem;
 }
 
+.app .allTweetsBox .tweetCardsUl .tweetCardLi .editTweetForm {
+  width: 50%;
+  height: 3rem;
+  margin-top: 0.5rem;
+}
+
+.app .allTweetsBox .tweetCardsUl .tweetCardLi .editTweetForm input {
+  width: 100%;
+  height: 2rem;
+}
+
+.app .allTweetsBox .tweetCardsUl .tweetCardLi .editTweetForm button {
+  position: absolute;
+  bottom: 0.2rem;
+  color: #fff;
+  padding: 0.2rem;
+  font-size: small;
+}
+
+.app .allTweetsBox .tweetCardsUl .tweetCardLi .editTweetForm .formBtnUpdate {
+  right: 50%;
+  background: #3336ff;
+}
+
+.app .allTweetsBox .tweetCardsUl .tweetCardLi .editTweetForm .formBtnCancel {
+  left: 2%;
+  background: #f00;
+}
+
 .app .allTweetsBox .editForm {
   width: 100%;
   display: flex;
@@ -209,6 +238,35 @@ body {
   box-shadow: 0 5px 10px #666;
   margin-bottom: 1rem;
   position: relative;
+}
+
+.app .myTweetsBox ul .tweetCardLi .editTweetForm {
+  width: 50%;
+  height: 3rem;
+  margin-top: 0.5rem;
+}
+
+.app .myTweetsBox ul .tweetCardLi .editTweetForm input {
+  width: 100%;
+  height: 2rem;
+}
+
+.app .myTweetsBox ul .tweetCardLi .editTweetForm button {
+  position: absolute;
+  bottom: 0.2rem;
+  color: #fff;
+  padding: 0.2rem;
+  font-size: small;
+}
+
+.app .myTweetsBox ul .tweetCardLi .editTweetForm .formBtnUpdate {
+  right: 50%;
+  background: #3336ff;
+}
+
+.app .myTweetsBox ul .tweetCardLi .editTweetForm .formBtnCancel {
+  left: 2%;
+  background: #f00;
 }
 
 .app .myTweetsBox ul .tweetCardLi button {

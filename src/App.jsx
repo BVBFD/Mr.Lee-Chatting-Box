@@ -12,7 +12,7 @@ const App = ({ authService, tweetService }) => {
 
   tweetService
     .getTweet()
-    .then((tweets) => setTweets(tweets))
+    .then((tweets) => setTweets(tweets.reverse()))
     .catch(console.error);
 
   return (
