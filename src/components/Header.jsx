@@ -7,7 +7,7 @@ const Header = ({ user }) => {
       <div className="imgBox">
         <Link to={`/${user.id}`}>
           <img src="./img/logo.png" alt="" />
-          <h2>Mr.Lee Chatting Box</h2>
+          <h2>Mr.Lee Academia</h2>
         </Link>
         <Link to={`/${user.id}/mytweets`}>
           <h5>@{user.name}</h5>

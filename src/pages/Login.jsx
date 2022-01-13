@@ -46,7 +46,7 @@ const Login = ({ authService, setUser }) => {
     <div className="loginBox">
       <header className="loginHeaderBox">
         <img src="./img/logo.png" alt="" />
-        <h2>Mr.Lee Chatting Box</h2>
+        <h2>Mr.Lee Academia</h2>
       </header>
       <form className="signInSignUpForm">
         <input type="text" name="id" placeholder="Id" />
