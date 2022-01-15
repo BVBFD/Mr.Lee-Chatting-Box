@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Tweets from "../components/Tweets";
 
-const MyTweets = ({ user, tweetService }) => {
+const MyTweets = ({ tweetService }) => {
   const [myTweets, setMyTweets] = useState([]);
   const { id } = useParams();
 
@@ -16,7 +16,7 @@ const MyTweets = ({ user, tweetService }) => {
 
   return (
     <>
-      <Tweets user={user} allTweets={myTweets} />
+      <Tweets allTweets={myTweets} />
     </>
   );
 };

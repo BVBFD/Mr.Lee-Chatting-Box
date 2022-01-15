@@ -3,6 +3,19 @@ export default class AuthService {
     this.baseURL = baseURL;
   }
 
+  async getLoginDataName(id) {
+    const response = await fetch(`${this.baseURL}/login?id=${id}`, {
+      method: "GET",
+      headers: { "Content-type": "application/json" },
+    });
+    const data = await response.json();
+    if (response.status !== 200) {
+      throw new Error("404 Id Not Found");
+    } else {
+      return data;
+    }
+  }
+
   async getLoginData(id, password) {
     const response = await fetch(`${this.baseURL}/login?id=${id}`, {
       method: "GET",

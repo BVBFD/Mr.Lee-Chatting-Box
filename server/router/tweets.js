@@ -50,7 +50,7 @@ tweetsRouter.post("/", (req, res, next) => {
     text: text,
     createdAt: createdAt,
   };
-  tweets.reverse().push(newTweet);
+  tweets.push(newTweet);
   res.status(201).json(newTweet);
   // res.status(201).json(tweets);
 });
@@ -71,7 +71,7 @@ tweetsRouter.put("/:num", (req, res, next) => {
 tweetsRouter.delete("/:num", (req, res, next) => {
   const num = req.params.num;
   tweets = tweets.filter((tweet) => tweet.num !== num);
-  tweets.reverse();
+  tweets;
   res.status(204).json(tweets);
 });
 

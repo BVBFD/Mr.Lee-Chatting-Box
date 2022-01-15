@@ -1,13 +1,13 @@
 import React from "react";
 import TweetCard from "./TweetCard";
 
-const Tweets = ({ user, allTweets }) => {
+const Tweets = ({ allTweets }) => {
   return (
     <>
       {allTweets.map((tweet) => {
         return (
           <>
-            <TweetCard user={user} tweet={tweet} />
+            <TweetCard tweet={tweet} />
           </>
         );
       })}

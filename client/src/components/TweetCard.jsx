@@ -1,9 +1,9 @@
 import React from "react";
 
-const TweetCard = ({ user, tweet }) => {
+const TweetCard = ({ tweet }) => {
+  console.log(tweet);
   return (
     <>
-      <span>{user.id}</span>
       <p>{tweet.text}</p>
     </>
   );
