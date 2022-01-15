@@ -19,7 +19,7 @@ const Login = ({ authService, setUser }) => {
     authService
       .getLoginData(id, password)
       .then((data) => {
-        navigate(`/${id}`);
+        navigate(`/${id}/alltweets`);
         setUser(data);
       })
       .catch(console.error);

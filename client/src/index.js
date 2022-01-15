@@ -6,8 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import AuthService from "./service/auth";
 import TweetService from "./service/tweet";
 
-const authService = new AuthService();
-const tweetService = new TweetService();
+const baseURL = process.env.REACT_APP_BASE_URL;
+const authService = new AuthService(baseURL);
+const tweetService = new TweetService(baseURL);
 
 ReactDOM.render(
   <BrowserRouter>

@@ -1,19 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from "../src/components/Header.jsx";
-import AllTweets from "./pages/AllTweets.jsx";
 import Login from "./pages/Login.jsx";
-import MyTweets from "./pages/MyTweets.jsx";
 import { useState } from "react";
+import AllTweets from "./pages/AllTweets.jsx";
+import MyTweets from "./pages/MyTweets.jsx";
 
 const App = ({ authService, tweetService }) => {
   const [user, setUser] = useState({});
-  const [tweets, setTweets] = useState([]);
-
-  tweetService
-    .getTweet()
-    .then((tweets) => setTweets(tweets.reverse()))
-    .catch(console.error);
 
   return (
     <div className="app">
@@ -23,32 +16,14 @@ const App = ({ authService, tweetService }) => {
           element={<Login authService={authService} setUser={setUser} />}
         />
         <Route
-          path={`/:id`}
+          path={"/:id/alltweets"}
           element={
-            <>
-              <Header user={user} />
-              <AllTweets
-                user={user}
-                tweets={tweets}
-                setTweets={setTweets}
-                tweetService={tweetService}
-              />
-            </>
+            user && <AllTweets user={user} tweetService={tweetService} />
           }
         />
         <Route
-          path={`/:id/mytweets`}
-          element={
-            <>
-              <Header user={user} />
-              <MyTweets
-                user={user}
-                tweets={tweets}
-                setTweets={setTweets}
-                tweetService={tweetService}
-              />
-            </>
-          }
+          path={"/:id/mytweets"}
+          element={user && <MyTweets user={user} tweetService={tweetService} />}
         />
       </Routes>
     </div>

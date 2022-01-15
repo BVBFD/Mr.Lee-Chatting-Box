@@ -1,55 +1,78 @@
 export default class TweetService {
-  tweets = [
-    {
-      num: "1",
-      id: "lse126",
-      name: "Lee Seong Eun",
-      url: "https://i.pinimg.com/474x/e2/2c/b9/e22cb965ccd406838b496358fd5d989a.jpg",
-      text: "리액트 화면 구성 마스터 할때 까지 안 잔다.",
-      createdAt: "2021-05-09T04:20:57.000Zdfsd",
-    },
-    {
-      num: "2",
-      id: "lse126",
-      name: "Lee Seong Eun",
-      url: "https://i.pinimg.com/474x/e2/2c/b9/e22cb965ccd406838b496358fd5d989a.jpg",
-      text: "2번째 문장 테스트 용",
-      createdAt: "2021-05-09T04:20:57.000Z",
-    },
-  ];
+  constructor(baseURL) {
+    this.baseURL = baseURL;
+  }
 
   async updateTweet(tweetTarget, text) {
-    const tweets = this.tweets.map((tweet) => {
-      if (tweet.num === tweetTarget.num) {
-        tweet.text = text;
-        return tweet;
-      }
-      return tweet;
+    const response = await fetch(`${this.baseURL}/tweets/${tweetTarget.num}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: {
+        text,
+      },
     });
-    this.tweets = tweets;
-    return this.tweets;
+    const result = await response.json();
+    if (response.status !== 200) {
+      throw new Error(result.message);
+    } else {
+      return result;
+    }
   }
 
   async deleteTweet(tweetTarget) {
-    const tweets = this.tweets.filter((tweet) => tweet.num !== tweetTarget.num);
-    this.tweets = tweets.reverse();
-    return tweets.reverse();
+    const response = await fetch(`${this.baseURL}/tweets/${tweetTarget.num}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    const result = await response.json();
+    if (result.status !== 204) {
+      throw new Error("500 Error!");
+    }
+    return result;
   }
 
   async getTweet() {
-    return this.tweets;
+    const response = await fetch(`${this.baseURL}/tweets`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const tweets = await response.json();
+    if (response.status !== 200) {
+      throw new Error("404 Not Found!");
+    }
+    return tweets;
   }
 
-  async postTweet(id, name, url, text, createdAt) {
-    const tweet = {
-      num: (this.tweets.length + 1).toString(),
-      id: id,
-      name: name,
-      url: url,
-      text: text,
-      createdAt: createdAt,
-    };
-    this.tweets.reverse().push(tweet);
-    return tweet;
+  async getTweetById(id) {
+    const response = await fetch(`${this.baseURL}/tweets/${id}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+    const tweets = await response.json();
+    if (response.status !== 200) {
+      throw new Error("404 Not Found!");
+    }
+    return tweets;
+  }
+
+  async postTweet(num, id, name, url, text, createdAt) {
+    const response = await fetch(`${this.baseURL}/tweets`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        num,
+        id,
+        name,
+        url,
+        text,
+        createdAt,
+      }),
+    });
+    const newTweet = await response.json();
+    if (response.status !== 201) {
+      throw new Error(newTweet.message);
+    }
+    console.log(newTweet);
+    return newTweet;
   }
 }

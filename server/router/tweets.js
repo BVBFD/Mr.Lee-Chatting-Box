@@ -7,7 +7,7 @@ let tweets = [
     id: "lse126",
     name: "Lee Seong Eun",
     url: "https://i.pinimg.com/474x/e2/2c/b9/e22cb965ccd406838b496358fd5d989a.jpg",
-    text: "리액트 화면 구성 마스터 할때 까지 안 잔다.",
+    text: "아카데미아에 온것을 환영합니다.",
     createdAt: "2021-05-09T04:20:57.000Zdfsd",
   },
   {
@@ -15,7 +15,7 @@ let tweets = [
     id: "lse126",
     name: "Lee Seong Eun",
     url: "https://i.pinimg.com/474x/e2/2c/b9/e22cb965ccd406838b496358fd5d989a.jpg",
-    text: "2번째 문장 테스트 용",
+    text: "안녕하십니까.",
     createdAt: "2021-05-09T04:20:57.000Z",
   },
 ];
@@ -26,18 +26,33 @@ tweetsRouter.get("/", (req, res, next) => {
   res.status(200).json(tweets);
 });
 
+tweetsRouter.get("/:id", (req, res, next) => {
+  const id = req.params.id;
+  console.log(id);
+  tweets = tweets.filter((tweet) => tweet.id === id);
+  console.log(tweets);
+  if (tweets) {
+    res.status(200).json(tweets);
+  } else if (!tweets) {
+    res.status(200).json("There is no your tweet at all!");
+  } else {
+    res.status(404).json("Not Found!");
+  }
+});
+
 tweetsRouter.post("/", (req, res, next) => {
   const { num, id, name, url, text, createdAt } = req.body;
   const newTweet = {
-    num: num.toString(),
-    id: id.toString(),
-    name: name.toString(),
-    url: url.toString(),
-    text: text.toString(),
-    createdAt: createdAt.toString(),
+    num: num,
+    id: id,
+    name: name,
+    url: url,
+    text: text,
+    createdAt: createdAt,
   };
-  tweets.push(newTweet);
-  res.sendStatus(201);
+  tweets.reverse().push(newTweet);
+  res.status(201).json(newTweet);
+  // res.status(201).json(tweets);
 });
 
 tweetsRouter.put("/:num", (req, res, next) => {
@@ -56,6 +71,7 @@ tweetsRouter.put("/:num", (req, res, next) => {
 tweetsRouter.delete("/:num", (req, res, next) => {
   const num = req.params.num;
   tweets = tweets.filter((tweet) => tweet.num !== num);
+  tweets.reverse();
   res.status(204).json(tweets);
 });
 

@@ -1,27 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import TweetCard from "../components/TweetCard";
-import TweetCards from "../components/TweetCards";
+import Tweets from "../components/Tweets";
 
-const MyTweets = ({ user, tweets, tweetService, setTweets }) => {
+const MyTweets = ({ user, tweetService }) => {
+  const [myTweets, setMyTweets] = useState([]);
   const { id } = useParams();
+
+  useEffect(() => {
+    tweetService
+      .getTweetById(id)
+      .then((tweets) => setMyTweets(tweets))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
-    <div className="myTweetsBox">
-      <ul>
-        {tweets.map((tweet) => {
-          return id === tweet.id ? (
-            <TweetCard
-              tweetService={tweetService}
-              setTweets={setTweets}
-              user={user}
-              tweet={tweet}
-            />
-          ) : (
-            ""
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      <Tweets user={user} allTweets={myTweets} />
+    </>
   );
 };
 
