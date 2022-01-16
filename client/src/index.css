@@ -145,6 +145,7 @@ body {
   margin-top: 2rem;
   box-shadow: 0px 5px 10px #999;
   padding: 1.5rem;
+  position: relative;
 }
 
 .app .tweetsBox .tweetCard .userImgInfoBox {
@@ -184,4 +185,60 @@ body {
   height: 3.5rem;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.app .tweetsBox .tweetCard button {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: #5b59ee;
+  font-weight: medium;
+  cursor: pointer;
+}
+
+.app .tweetsBox .tweetCard .deleteBtn {
+  top: 0.5rem;
+  right: 0.8rem;
+  font-size: x-large;
+}
+
+.app .tweetsBox .tweetCard .updateBtn {
+  bottom: 0.5rem;
+  right: 0.8rem;
+  font-size: large;
+}
+
+.app .tweetsBox .tweetCard .updateForm {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.app .tweetsBox .tweetCard .updateForm input {
+  width: 100%;
+}
+
+.app .tweetsBox .tweetCard .updateForm .btnBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 1rem;
+}
+
+.app .tweetsBox .tweetCard .updateForm .btnBox button {
+  height: 1.4rem;
+  padding: 0 0.4rem;
+  background: #999;
+  position: relative;
+  top: 0.4rem;
+  color: #fff;
+}
+
+.app .tweetsBox .tweetCard .updateForm .btnBox .cancelBtn {
+  background: #f00;
+}
+
+.app .tweetsBox .tweetCard .updateForm .btnBox .onUpdateBtn {
+  background: #00f;
 }

@@ -71,8 +71,7 @@ tweetsRouter.put("/:num", (req, res, next) => {
 tweetsRouter.delete("/:num", (req, res, next) => {
   const num = req.params.num;
   tweets = tweets.filter((tweet) => tweet.num !== num);
-  tweets;
-  res.status(204).json(tweets);
+  res.sendStatus(204);
 });
 
 export default tweetsRouter;

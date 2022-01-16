@@ -25,7 +25,12 @@ const AllTweets = ({ user, tweetService, authService }) => {
         allTweetsLength={allTweetsLength}
         setAllTweetsLength={setAllTweetsLength}
       />
-      <Tweets allTweets={allTweets} />
+      <Tweets
+        allTweetsLength={allTweetsLength}
+        setAllTweetsLength={setAllTweetsLength}
+        allTweets={allTweets}
+        tweetService={tweetService}
+      />
     </>
   );
 };

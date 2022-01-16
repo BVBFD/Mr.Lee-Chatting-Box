@@ -19,16 +19,15 @@ export default class TweetService {
     }
   }
 
-  async deleteTweet(tweetTarget) {
-    const response = await fetch(`${this.baseURL}/tweets/${tweetTarget.num}`, {
+  async deleteTweet(num) {
+    const response = await fetch(`${this.baseURL}/tweets/${num}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
-    const result = await response.json();
-    if (result.status !== 204) {
-      throw new Error("500 Error!");
+    if (response.status !== 204) {
+      const result = await response.json();
+      throw new Error(result.message);
     }
-    return result;
   }
 
   async getTweet() {
