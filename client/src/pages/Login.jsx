@@ -16,6 +16,7 @@ const Login = ({ authService, setUser }) => {
     event.preventDefault();
     const id = document.querySelector("input[name=id]").value;
     const password = document.querySelector("input[name=password]").value;
+    console.log(id, password);
     authService
       .getLoginData(id, password)
       .then((data) => {

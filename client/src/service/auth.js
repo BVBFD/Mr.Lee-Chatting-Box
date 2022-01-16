@@ -37,13 +37,13 @@ export default class AuthService {
     const response = await fetch(`${this.baseURL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: {
+      body: JSON.stringify({
         id,
         password,
         name,
         email,
         url,
-      },
+      }),
     });
     const result = await response.json();
     if (response.status !== 201) {

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const TweetCard = ({
   tweet,
@@ -11,6 +12,7 @@ const TweetCard = ({
   console.log(tweet);
   const [openEditBoxIndex, setOpenEditBoxIndex] = useState(false);
   const [inputText, setInputText] = useState();
+  const { id } = useParams();
 
   const openEditBox = () => {
     if (!openEditBoxIndex) {
@@ -75,12 +77,16 @@ const TweetCard = ({
           </div>
         </form>
       )}
-      <button onClick={deleteTweet} className="deleteBtn">
-        x
-      </button>
-      <button onClick={openEditBox} className="updateBtn">
-        ✎
-      </button>
+      {tweet.id === id && (
+        <button onClick={deleteTweet} className="deleteBtn">
+          x
+        </button>
+      )}
+      {tweet.id === id && (
+        <button onClick={openEditBox} className="updateBtn">
+          ✎
+        </button>
+      )}
     </div>
   );
 };
