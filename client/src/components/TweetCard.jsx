@@ -10,6 +10,8 @@ const TweetCard = ({
 }) => {
   console.log(tweet);
   const [openEditBoxIndex, setOpenEditBoxIndex] = useState(false);
+  const [inputText, setInputText] = useState();
+
   const openEditBox = () => {
     if (!openEditBoxIndex) {
       setOpenEditBoxIndex(true);
@@ -29,6 +31,26 @@ const TweetCard = ({
       .catch((error) => console.log(error));
   };
 
+  const onTextChange = (event) => {
+    setInputText(event.target.value);
+  };
+
+  const onUpdate = (event) => {
+    event.preventDefault();
+    tweetService
+      .updateTweet(tweet.num, inputText)
+      .then((editedTweet) => {
+        console.log(editedTweet);
+        setAllTweetsLength(0);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const onCancel = (event) => {
+    event.preventDefault();
+    setOpenEditBoxIndex(false);
+  };
+
   return (
     <div className="tweetCard">
       <div className="userImgInfoBox">
@@ -42,10 +64,14 @@ const TweetCard = ({
       </div>
       {openEditBoxIndex && (
         <form action="" className="updateForm">
-          <input type="text" className="updateInput" />
+          <input onChange={onTextChange} type="text" className="updateInput" />
           <div className="btnBox">
-            <button className="onUpdateBtn">update</button>
-            <button className="cancelBtn">cancel</button>
+            <button onClick={onUpdate} className="onUpdateBtn">
+              update
+            </button>
+            <button onClick={onCancel} className="cancelBtn">
+              cancel
+            </button>
           </div>
         </form>
       )}

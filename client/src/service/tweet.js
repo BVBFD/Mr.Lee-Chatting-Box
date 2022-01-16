@@ -3,13 +3,11 @@ export default class TweetService {
     this.baseURL = baseURL;
   }
 
-  async updateTweet(tweetTarget, text) {
-    const response = await fetch(`${this.baseURL}/tweets/${tweetTarget.num}`, {
+  async updateTweet(num, text) {
+    const response = await fetch(`${this.baseURL}/tweets/${num}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: {
-        text,
-      },
+      body: JSON.stringify({ text }),
     });
     const result = await response.json();
     if (response.status !== 200) {
