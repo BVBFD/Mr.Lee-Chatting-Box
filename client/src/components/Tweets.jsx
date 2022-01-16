@@ -3,15 +3,17 @@ import TweetCard from "./TweetCard";
 
 const Tweets = ({ allTweets }) => {
   return (
-    <>
-      {allTweets.map((tweet) => {
-        return (
-          <>
-            <TweetCard tweet={tweet} />
-          </>
-        );
-      })}
-    </>
+    allTweets && (
+      <div className="tweetsBox">
+        {allTweets.map((tweet) => {
+          return (
+            <>
+              <TweetCard tweet={tweet} />
+            </>
+          );
+        })}
+      </div>
+    )
   );
 };
 

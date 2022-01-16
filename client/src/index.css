@@ -1,3 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.2s linear;
+}
+
+body {
+  width: 100vw;
+}
+
 .app .loginBox .loginHeaderBox {
   display: flex;
   padding: 1rem;
@@ -60,4 +71,117 @@
 
 .app .loginBox .signInSignUpForm button:hover {
   background-color: #000;
+}
+
+.app .header {
+  width: 100%;
+  display: flex;
+  padding: 0.5rem 2rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+  color: #fff;
+}
+
+.app .header .imgBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.app .header .imgBox img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.app .header .imgBox h1 {
+  padding-left: 1rem;
+}
+
+.app .header nav a {
+  color: #fff;
+  font-size: x-large;
+  font-weight: bolder;
+  text-decoration: none;
+  padding-left: 2rem;
+}
+
+.app .editForm {
+  width: 100%;
+  background-color: #555;
+  display: flex;
+  height: 2.5rem;
+  padding: 0.3rem 0.5rem;
+}
+
+.app .editForm input {
+  flex: 1 1 90%;
+  font-size: x-large;
+}
+
+.app .editForm button {
+  flex: 1 1 10%;
+  background: #999;
+  color: #fff;
+  font-size: large;
+}
+
+.app .editForm button:hover {
+  background: #000;
+  cursor: pointer;
+}
+
+.app .tweetsBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app .tweetsBox .tweetCard {
+  width: 80%;
+  background: #fff;
+  margin-top: 2rem;
+  box-shadow: 0px 5px 10px #999;
+  padding: 1.5rem;
+}
+
+.app .tweetsBox .tweetCard .userImgInfoBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.app .tweetsBox .tweetCard .textBox {
+  margin-left: 3rem;
+}
+
+.app .tweetsBox .tweetCard .userImgInfoBox span:nth-child(2) {
+  margin-left: 0.5rem;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.app .tweetsBox .tweetCard .userImgInfoBox span:nth-child(3) {
+  margin-left: 0.3rem;
+  font-size: small;
+  font-weight: bolder;
+  color: #5b59ee;
+  margin-top: 0.5rem;
+}
+
+.app .tweetsBox .tweetCard .userImgInfoBox span:nth-child(4) {
+  margin-left: 0.3rem;
+  font-size: small;
+  font-weight: bolder;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.app .tweetsBox .tweetCard .userImgInfoBox img {
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 50%;
 }

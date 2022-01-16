@@ -41,17 +41,12 @@ const EditForm = ({
     setText(event.target.value);
   };
 
-  const toMyTweet = () => {
-    navigate(`/${id}/mytweets`);
-  };
-
   return (
     <>
-      <form action="" onSubmit={onUpdate}>
+      <form className="editForm" action="" onSubmit={onUpdate}>
         <input type="text" onChange={inputChange} />
         <button>POST</button>
       </form>
-      <button onClick={toMyTweet}>MyTweet</button>
     </>
   );
 };

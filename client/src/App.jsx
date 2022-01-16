@@ -4,6 +4,7 @@ import Login from "./pages/Login.jsx";
 import { useState } from "react";
 import AllTweets from "./pages/AllTweets.jsx";
 import MyTweets from "./pages/MyTweets.jsx";
+import Header from "./components/Header.jsx";
 
 const App = ({ authService, tweetService }) => {
   const [user, setUser] = useState({});
@@ -24,17 +25,25 @@ const App = ({ authService, tweetService }) => {
           path={"/:id/alltweets"}
           element={
             user && (
-              <AllTweets
-                user={user}
-                authService={authService}
-                tweetService={tweetService}
-              />
+              <>
+                <Header />
+                <AllTweets
+                  user={user}
+                  authService={authService}
+                  tweetService={tweetService}
+                />
+              </>
             )
           }
         />
         <Route
           path={"/:id/mytweets"}
-          element={<MyTweets tweetService={tweetService} />}
+          element={
+            <>
+              <Header />
+              <MyTweets tweetService={tweetService} />
+            </>
+          }
         />
       </Routes>
     </div>
