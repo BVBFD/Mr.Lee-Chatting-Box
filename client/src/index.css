@@ -242,3 +242,115 @@ body {
 .app .tweetsBox .tweetCard .updateForm .btnBox .onUpdateBtn {
   background: #00f;
 }
+
+/* myTweets */
+/* .app .myTweetsBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app .myTweetsBox .tweetCard {
+  width: 80%;
+  background: #fff;
+  margin-top: 2rem;
+  box-shadow: 0px 5px 10px #999;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.app .myTweetsBox .tweetCard .userImgInfoBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.app .myTweetsBox .tweetCard .textBox {
+  margin-left: 3rem;
+}
+
+.app .myTweetsBox .tweetCard .userImgInfoBox span:nth-child(2) {
+  margin-left: 0.5rem;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.app .myTweetsBox .tweetCard .userImgInfoBox span:nth-child(3) {
+  margin-left: 0.3rem;
+  font-size: small;
+  font-weight: bolder;
+  color: #5b59ee;
+  margin-top: 0.5rem;
+}
+
+.app .myTweetsBox .tweetCard .userImgInfoBox span:nth-child(4) {
+  margin-left: 0.3rem;
+  font-size: small;
+  font-weight: bolder;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.app .myTweetsBox .tweetCard .userImgInfoBox img {
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.app .myTweetsBox .tweetCard button {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: #5b59ee;
+  font-weight: medium;
+  cursor: pointer;
+}
+
+.app .myTweetsBox .tweetCard .deleteBtn {
+  top: 0.5rem;
+  right: 0.8rem;
+  font-size: x-large;
+}
+
+.app .myTweetsBox .tweetCard .updateBtn {
+  bottom: 0.5rem;
+  right: 0.8rem;
+  font-size: large;
+}
+
+.app .myTweetsBox .tweetCard .updateForm {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.app .myTweetsBox .tweetCard .updateForm input {
+  width: 100%;
+}
+
+.app .myTweetsBox .tweetCard .updateForm .btnBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 1rem;
+}
+
+.app .myTweetsBox .tweetCard .updateForm .btnBox button {
+  height: 1.4rem;
+  padding: 0 0.4rem;
+  background: #999;
+  position: relative;
+  top: 0.4rem;
+  color: #fff;
+}
+
+.app .myTweetsBox .tweetCard .updateForm .btnBox .cancelBtn {
+  background: #f00;
+}
+
+.app .myTweetsBox .tweetCard .updateForm .btnBox .onUpdateBtn {
+  background: #00f;
+} */

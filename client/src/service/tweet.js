@@ -37,7 +37,7 @@ export default class TweetService {
     if (response.status !== 200) {
       throw new Error("404 Not Found!");
     }
-    return tweets;
+    return tweets.reverse();
   }
 
   async getTweetById(id) {
@@ -49,7 +49,7 @@ export default class TweetService {
     if (response.status !== 200) {
       throw new Error("404 Not Found!");
     }
-    return tweets;
+    return tweets.reverse();
   }
 
   async postTweet(num, id, name, url, text, createdAt) {

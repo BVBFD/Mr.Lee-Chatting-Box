@@ -8,6 +8,7 @@ const TweetCard = ({
   allTweetsLength,
   tweetService,
   setAllTweetsLength,
+  setMyTweetsLength,
 }) => {
   console.log(tweet);
   const [openEditBoxIndex, setOpenEditBoxIndex] = useState(false);
@@ -27,7 +28,7 @@ const TweetCard = ({
     tweetService
       .deleteTweet(tweet.num)
       .then(() => {
-        setAllTweetsLength(allTweetsLength - 1);
+        setMyTweetsLength ? setMyTweetsLength(0) : setAllTweetsLength(0);
         console.log(allTweetsLength);
       })
       .catch((error) => console.log(error));
@@ -39,11 +40,12 @@ const TweetCard = ({
 
   const onUpdate = (event) => {
     event.preventDefault();
+    console.log(tweet.num, inputText);
     tweetService
       .updateTweet(tweet.num, inputText)
       .then((editedTweet) => {
         console.log(editedTweet);
-        setAllTweetsLength(0);
+        setMyTweetsLength ? setMyTweetsLength(0) : setAllTweetsLength(0);
       })
       .catch((err) => console.log(err));
   };

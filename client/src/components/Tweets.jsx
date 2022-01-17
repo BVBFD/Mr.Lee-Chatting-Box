@@ -9,24 +9,24 @@ const Tweets = ({
   tweetService,
   allTweetsLength,
   setAllTweetsLength,
+  setMyTweetsLength,
 }) => {
   return (
-    allTweets && (
-      <div className="tweetsBox">
-        {allTweets.map((tweet) => {
-          return (
-            <>
-              <TweetCard
-                tweet={tweet}
-                allTweetsLength={allTweetsLength}
-                setAllTweetsLength={setAllTweetsLength}
-                tweetService={tweetService}
-              />
-            </>
-          );
-        })}
-      </div>
-    )
+    <div className="tweetsBox">
+      {allTweets.map((tweet) => {
+        return (
+          <>
+            <TweetCard
+              tweet={tweet}
+              allTweetsLength={allTweetsLength}
+              setAllTweetsLength={setAllTweetsLength}
+              tweetService={tweetService}
+              setMyTweetsLength={setMyTweetsLength}
+            />
+          </>
+        );
+      })}
+    </div>
   );
 };
 

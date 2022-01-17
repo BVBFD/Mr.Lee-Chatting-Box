@@ -6,6 +6,7 @@ const AllTweets = ({ user, tweetService, authService }) => {
   const [allTweets, setAllTweets] = useState([]);
   const [allTweetsLength, setAllTweetsLength] = useState();
 
+  console.log(allTweets);
   useEffect(() => {
     tweetService
       .getTweet()

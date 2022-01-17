@@ -29,11 +29,11 @@ tweetsRouter.get("/", (req, res, next) => {
 tweetsRouter.get("/:id", (req, res, next) => {
   const id = req.params.id;
   console.log(id);
-  tweets = tweets.filter((tweet) => tweet.id === id);
-  console.log(tweets);
-  if (tweets) {
-    res.status(200).json(tweets);
-  } else if (!tweets) {
+  const filteredTweets = tweets.filter((tweet) => tweet.id === id);
+  console.log(filteredTweets);
+  if (filteredTweets) {
+    res.status(200).json(filteredTweets);
+  } else if (!filteredTweets) {
     res.status(200).json("There is no your tweet at all!");
   } else {
     res.status(404).json("Not Found!");
