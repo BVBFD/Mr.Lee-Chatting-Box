@@ -26,7 +26,7 @@ const App = ({ authService, tweetService }) => {
           element={
             user && (
               <>
-                <Header />
+                <Header authService={authService} />
                 <AllTweets
                   user={user}
                   authService={authService}

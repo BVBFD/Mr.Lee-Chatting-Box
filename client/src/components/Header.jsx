@@ -1,8 +1,12 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
-const Header = (props) => {
+const Header = ({ authService }) => {
   const { id } = useParams();
+  const clearLoginDataLocalStorage = () => {
+    authService.tokenStorage.clearToken();
+  };
+
   return (
     <header className="header">
       <div className="imgBox">
@@ -17,7 +21,7 @@ const Header = (props) => {
         <Link to={`/${id}/mytweets`}>
           <span>My Tweets</span>
         </Link>
-        <Link to={"/"}>
+        <Link onClick={clearLoginDataLocalStorage} to={"/"}>
           <span>Log Out</span>
         </Link>
       </nav>

@@ -1,35 +1,47 @@
 export default class AuthService {
-  constructor(baseURL) {
+  constructor(baseURL, tokenStorage) {
     this.baseURL = baseURL;
+    this.tokenStorage = tokenStorage;
   }
 
-  async getLoginDataName(id) {
-    const response = await fetch(`${this.baseURL}/login?id=${id}`, {
-      method: "GET",
-      headers: { "Content-type": "application/json" },
-    });
+  async getLoginDataName(id, password) {
+    const response = await fetch(
+      `${this.baseURL}/login/getLoginData?id=${id}`,
+      {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          id,
+          password,
+        }),
+      }
+    );
     const data = await response.json();
     if (response.status !== 200) {
-      throw new Error("404 Id Not Found");
+      throw new Error(data.message);
     } else {
       return data;
     }
   }
 
   async getLoginData(id, password) {
-    const response = await fetch(`${this.baseURL}/login?id=${id}`, {
-      method: "GET",
-      headers: { "Content-type": "application/json" },
-    });
+    const response = await fetch(
+      `${this.baseURL}/login/getLoginData?id=${id}`,
+      {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+          id,
+          password,
+        }),
+      }
+    );
     const loginData = await response.json();
     if (response.status !== 200) {
-      throw new Error("404 Id Not Found");
+      throw new Error(loginData.message);
     } else {
-      if (loginData.password === password) {
-        return loginData;
-      } else {
-        return window.alert("잘못된 Password 입력 하셨습니다");
-      }
+      this.tokenStorage.saveToken(loginData.token);
+      return loginData.data;
     }
   }
 
@@ -47,7 +59,7 @@ export default class AuthService {
     });
     const result = await response.json();
     if (response.status !== 201) {
-      throw new Error("500 Server not found");
+      throw new Error(result.message);
     }
     window.alert("You have created your ID!!");
     return result;

@@ -12,6 +12,9 @@ const validator = [
 ];
 
 tweetsRouter.get("/", tweetController.getAllTweets);
+// getAllTweets() 이렇게 표현해서 함수를 호출하면 안된다.
+// 호출하면 결과값이 연결되기 때문에..
+// 결과 값이 아니라 ()를 빼고 표현해서 함수 자체를 연결해주어야함.
 
 tweetsRouter.get("/:id", tweetController.getTweetsById);
 
