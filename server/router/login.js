@@ -38,6 +38,8 @@ loginRouter.post(
   loginController.getLoginData
 );
 
+loginRouter.post("/getLoginDataName", loginController.getLoginDataName);
+
 loginRouter.post("/", validateSignUpData, loginController.signUpLoginData);
 
 export default loginRouter;

@@ -4,15 +4,14 @@ export default class AuthService {
     this.tokenStorage = tokenStorage;
   }
 
-  async getLoginDataName(id, password) {
+  async getLoginDataName(id) {
     const response = await fetch(
-      `${this.baseURL}/login/getLoginData?id=${id}`,
+      `${this.baseURL}/login/getLoginDataName?id=${id}`,
       {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify({
           id,
-          password,
         }),
       }
     );

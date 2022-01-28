@@ -3,6 +3,16 @@ import bcrypt from "bcrypt";
 import {} from "express-async-errors";
 import jwt from "jsonwebtoken";
 
+export async function getLoginDataName(req, res, next) {
+  const id = req.query.id;
+  const data = await loginDataRepo.findData(id);
+  if (!data) {
+    return res.status(404).json({ message: `invalid ID and Password!` });
+  }
+  console.log(data.id);
+  res.status(200).json({ data });
+}
+
 export async function getLoginData(req, res, next) {
   const id = req.query.id;
   const data = await loginDataRepo.findData(id);
