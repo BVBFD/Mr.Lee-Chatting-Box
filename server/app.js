@@ -5,6 +5,7 @@ import "express-async-errors";
 import morgan from "morgan";
 import loginRouter from "./router/login.js";
 import tweetsRouter from "./router/tweets.js";
+import { config } from "./config.js";
 
 const app = express();
 
@@ -22,4 +23,4 @@ app.use((error, req, res, next) => {
   res.sendStatus(500);
 });
 
-app.listen(4000);
+app.listen(config.host.localHost);

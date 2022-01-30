@@ -2,6 +2,7 @@ import * as loginDataRepo from "../data/login.js";
 import bcrypt from "bcrypt";
 import {} from "express-async-errors";
 import jwt from "jsonwebtoken";
+import { config } from "../config.js";
 
 export async function getLoginDataName(req, res, next) {
   const id = req.query.id;
@@ -34,7 +35,7 @@ export async function signUpLoginData(req, res, next) {
   if (found) {
     return res.status(409).json({ message: `this id ${id} already exist.` });
   }
-  const hashedPwd = await bcrypt.hash(password, 12);
+  const hashedPwd = await bcrypt.hash(password, config.bcrypt.saltRound);
   const newLoginData = {
     id: id.toString(),
     password: hashedPwd.toString(),
@@ -47,7 +48,7 @@ export async function signUpLoginData(req, res, next) {
 }
 
 const createJwtToken = (id) => {
-  return jwt.sign({ id }, "0lq@Ij!zElI8SGkt0zU5lEwwb1xf#RG7", {
-    expiresIn: "2d",
+  return jwt.sign({ id }, config.jwt.jwtSecret, {
+    expiresIn: config.jwt.jwtExpires,
   });
 };
