@@ -6,7 +6,8 @@ import morgan from "morgan";
 import loginRouter from "./router/login.js";
 import tweetsRouter from "./router/tweets.js";
 import { config } from "./config.js";
-import { Server } from "socket.io";
+import { initSocketIO } from "./connection/socket.js";
+// import { Server } from "socket.io";
 
 const app = express();
 
@@ -25,14 +26,15 @@ app.use((error, req, res, next) => {
 });
 
 const server = app.listen(config.host.localHost);
-const socketIO = new Server(server, {
-  cors: {
-    origin: "*",
-  },
-});
+// const socketIO = new Server(server, {
+//   cors: {
+//     origin: "*",
+//   },
+// });
 
-socketIO.on("connection", (socket) => {
-  console.log("Client is here!");
-  socketIO.emit("dwitter", "Hello~!");
-  socketIO.emit("dwitter", "Hi");
-});
+// socketIO.on("connection", (socket) => {
+//   console.log("Client is here!");
+//   socketIO.emit("dwitter", "New Tweet");
+// });
+
+initSocketIO(server);

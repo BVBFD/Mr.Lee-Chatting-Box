@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import tokenStorage from "../db/token.js";
 
 const EditForm = ({
   allTweets,
@@ -14,7 +13,6 @@ const EditForm = ({
   const [url, setUrl] = useState();
   const navigate = useNavigate();
   const { id } = useParams();
-  console.log(name);
 
   useEffect(() => {
     authService

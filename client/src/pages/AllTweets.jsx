@@ -6,12 +6,11 @@ const AllTweets = ({ user, tweetService, authService }) => {
   const [allTweets, setAllTweets] = useState([]);
   const [allTweetsLength, setAllTweetsLength] = useState();
 
-  console.log(allTweets);
   useEffect(() => {
     tweetService
       .getTweet()
       .then((tweets) => {
-        setAllTweets(tweets);
+        tweetService.onSync((tweets) => setAllTweets(tweets));
         setAllTweetsLength(tweets.length);
       })
       .catch((err) => console.log(err));

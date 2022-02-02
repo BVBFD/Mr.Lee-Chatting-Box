@@ -10,7 +10,6 @@ const TweetCard = ({
   setAllTweetsLength,
   setMyTweetsLength,
 }) => {
-  console.log(tweet);
   const [openEditBoxIndex, setOpenEditBoxIndex] = useState(false);
   const [inputText, setInputText] = useState();
   const { id } = useParams();
@@ -24,12 +23,10 @@ const TweetCard = ({
   };
 
   const deleteTweet = () => {
-    console.log(tweet.num);
     tweetService
       .deleteTweet(tweet.num)
       .then(() => {
         setMyTweetsLength ? setMyTweetsLength(0) : setAllTweetsLength(0);
-        console.log(allTweetsLength);
       })
       .catch((error) => console.log(error));
   };
