@@ -10,7 +10,9 @@ const AllTweets = ({ user, tweetService, authService }) => {
     tweetService
       .getTweet()
       .then((tweets) => {
-        tweetService.onSync((tweets) => setAllTweets(tweets));
+        tweetService.onSync((tweets) => {
+          setAllTweets(tweets.reverse());
+        });
         setAllTweetsLength(tweets.length);
       })
       .catch((err) => console.log(err));

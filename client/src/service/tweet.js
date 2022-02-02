@@ -21,7 +21,7 @@ export default class TweetService {
   }
 
   async getTweet() {
-    return this.http.fetch(`/`, {
+    return this.http.fetch(``, {
       method: "GET",
       headers: this.getHeader(),
     });
@@ -35,7 +35,7 @@ export default class TweetService {
   }
 
   async postTweet(num, id, name, url, text, createdAt) {
-    return this.http.fetch(`/`, {
+    return this.http.fetch(``, {
       method: "POST",
       headers: this.getHeader(),
       body: JSON.stringify({
