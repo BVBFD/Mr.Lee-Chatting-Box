@@ -36,6 +36,7 @@ export async function updateTweet(req, res, next) {
   const num = req.params.num;
   const text = req.body.text;
   const originData = await tweetRepository.update(num, text);
+  console.log(originData);
   if (originData) {
     res.status(200).json(originData);
   } else {
