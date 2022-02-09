@@ -21,14 +21,14 @@ import { db } from "../db/database.js";
 
 export async function getAll() {
   // return tweets;
-  return db.execute("SELECT * FROM tweet").then((tweets) => tweets[0]);
+  return db.execute("SELECT * FROM tweets").then((tweets) => tweets[0]);
 }
 
 export async function getAllById(id) {
   // const filteredTweets = tweets.filter((tweet) => tweet.id === id);
   // return filteredTweets;
   return db
-    .execute("SELECT * FROM tweet WHERE id=?", [id])
+    .execute("SELECT * FROM tweets WHERE id=?", [id])
     .then((tweets) => tweets[0]);
 }
 
@@ -45,12 +45,12 @@ export async function create(num, id, name, url, text, createdAt) {
   // return newTweet;
   return db
     .execute(
-      "INSERT INTO tweet (num, id, name, url, text, createdAt) VALUES(?,?,?,?,?,?)",
+      "INSERT INTO tweets (num, id, name, url, text, createdAt) VALUES(?,?,?,?,?,?)",
       [num, id, name, url, text, createdAt]
     )
     .then((result) =>
       db
-        .execute("SELECT * FROM tweet WHERE num=?", [result[0].insertId])
+        .execute("SELECT * FROM tweets WHERE num=?", [result[0].insertId])
         .then((newTweet) => newTweet[0][0])
     );
 }
@@ -60,10 +60,10 @@ export async function update(num, text) {
   // originData.text = text;
   // return originData;
   return db
-    .execute("UPDATE tweet SET text=? WHERE num=?", [text, num])
+    .execute("UPDATE tweets SET text=? WHERE num=?", [text, num])
     .then(() =>
       db
-        .execute("SELECT * FROM tweet WHERE num=?", [num])
+        .execute("SELECT * FROM tweets WHERE num=?", [num])
         .then((newTweet) => newTweet[0][0])
     );
 }
@@ -72,6 +72,6 @@ export async function remove(num) {
   // tweets = tweets.filter((tweet) => tweet.num !== num);
   // return tweets;
   return db
-    .execute("DELETE FROM tweet WHERE num=?", [num])
+    .execute("DELETE FROM tweets WHERE num=?", [num])
     .then(() => console.log("Delete Success!"));
 }

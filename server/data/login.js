@@ -20,7 +20,7 @@ export async function findData(id) {
   // await, then()으로 프로미스 콜백을 호출하면 그때 결과값을 리턴해라.
   // 그렇게만 async 함수에 명령을 내리고 바로 다음 함수로 이동해서 다른 작업을 수행!!
   return db
-    .execute("SELECT * FROM logindata WHERE id=?", [id])
+    .execute("SELECT * FROM logindatas WHERE id=?", [id])
     .then((result) => result[0][0]);
 }
 
@@ -28,7 +28,7 @@ export async function addData(data) {
   const { id, password, name, email, url } = data;
   return db
     .execute(
-      "INSERT INTO logindata (id, password, name, email, url) VALUES (?,?,?,?,?)",
+      "INSERT INTO logindatas (id, password, name, email, url) VALUES (?,?,?,?,?)",
       [id, password, name, email, url]
     )
     .then((result) => result[0].insertId);
