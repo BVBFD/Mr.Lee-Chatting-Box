@@ -44,7 +44,7 @@ export async function signUpLoginData(req, res, next) {
     url: url.toString(),
   };
   await loginDataRepo.addData(newLoginData);
-  res.status(201).json(newLoginData);
+  res.status(201).json(`${newLoginData.id} has created!`);
 }
 
 const createJwtToken = (id) => {

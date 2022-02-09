@@ -7,7 +7,7 @@ import loginRouter from "./router/login.js";
 import tweetsRouter from "./router/tweets.js";
 import { config } from "./config.js";
 import { initSocketIO } from "./connection/socket.js";
-import { db } from "./db/database.js";
+import { sequelize } from "./db/database.js";
 // import { Server } from "socket.io";
 
 const app = express();
@@ -26,8 +26,11 @@ app.use((error, req, res, next) => {
   res.sendStatus(500);
 });
 
-db.getConnection().then(() => console.log("DB connection success!"));
-const server = app.listen(config.host.localHost);
+// db.getConnection().then(() => console.log("DB connection success!"));
+sequelize.sync().then(() => {
+  const server = app.listen(config.host.localHost);
+  initSocketIO(server);
+});
 // const socketIO = new Server(server, {
 //   cors: {
 //     origin: "*",
@@ -38,5 +41,3 @@ const server = app.listen(config.host.localHost);
 //   console.log("Client is here!");
 //   socketIO.emit("dwitter", "New Tweet");
 // });
-
-initSocketIO(server);

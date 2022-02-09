@@ -27,7 +27,14 @@ const EditForm = ({
   const onUpdate = (event) => {
     event.preventDefault();
     tweetService
-      .postTweet(`${allTweetsLength + 1}`, id, name, url, text, `${new Date()}`)
+      .postTweet(
+        `${allTweets.length + 1}`,
+        id,
+        name,
+        url,
+        text,
+        `${new Date()}`
+      )
       .then((newTweet) => {
         console.log(newTweet);
         setAllTweetsLength(allTweets.length + 1);

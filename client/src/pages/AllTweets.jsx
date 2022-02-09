@@ -11,7 +11,7 @@ const AllTweets = ({ user, tweetService, authService }) => {
       .getTweet()
       .then((tweets) => {
         tweetService.onSync((tweets) => {
-          setAllTweets(tweets.reverse());
+          setAllTweets(tweets);
         });
         setAllTweetsLength(tweets.length);
       })
