@@ -10,7 +10,7 @@ export async function getLoginDataName(req, res, next) {
   if (!data) {
     return res.status(404).json({ message: `invalid ID and Password!` });
   }
-  console.log(data.id);
+  delete data.password;
   res.status(200).json({ data });
 }
 
@@ -26,6 +26,7 @@ export async function getLoginData(req, res, next) {
     return res.status(404).json({ message: `invalid ID and Password!` });
   }
   const token = createJwtToken(id);
+  delete data.password;
   res.status(200).json({ token, data });
 }
 

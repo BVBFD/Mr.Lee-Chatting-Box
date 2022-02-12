@@ -1,77 +1,67 @@
-// let tweets = [
-//   {
-//     num: "1",
-//     id: "lse126",
-//     name: "Lee Seong Eun",
-//     url: "https://i.pinimg.com/474x/e2/2c/b9/e22cb965ccd406838b496358fd5d989a.jpg",
-//     text: "아카데미아에 온것을 환영합니다.",
-//     createdAt: "2021-05-09T04:20:57.000Zdfsd",
-//   },
-//   {
-//     num: "2",
-//     id: "lse126",
-//     name: "Lee Seong Eun",
-//     url: "https://i.pinimg.com/474x/e2/2c/b9/e22cb965ccd406838b496358fd5d989a.jpg",
-//     text: "안녕하십니까.",
-//     createdAt: "2021-05-09T04:20:57.000Z",
-//   },
-// ];
+import { getTweets } from "../db/database.js";
+import MongoDb from "mongodb";
 
-import { db } from "../db/database.js";
+const ObjectId = MongoDb.ObjectId;
 
 export async function getAll() {
-  // return tweets;
-  return db.execute("SELECT * FROM tweets").then((tweets) => tweets[0]);
+  return (
+    getTweets() //
+      .find()
+      // .sort({ num: -1 })
+      .sort()
+      .toArray()
+      .then((tweets) => tweets)
+  );
 }
 
 export async function getAllById(id) {
-  // const filteredTweets = tweets.filter((tweet) => tweet.id === id);
-  // return filteredTweets;
-  return db
-    .execute("SELECT * FROM tweets WHERE id=?", [id])
-    .then((tweets) => tweets[0]);
+  return getTweets() //
+    .find({ id })
+    .sort()
+    .toArray()
+    .then((tweets) => tweets);
+}
+
+export async function getByMgObjectId(objectId) {
+  return getTweets()
+    .findOne({ _id: new ObjectId(objectId) })
+    .then((tweet) => tweet);
 }
 
 export async function create(num, id, name, url, text, createdAt) {
-  // const newTweet = {
-  //   num,
-  //   id,
-  //   name,
-  //   url,
-  //   text,
-  //   createdAt,
-  // };
-  // tweets.push(newTweet);
-  // return newTweet;
-  return db
-    .execute(
-      "INSERT INTO tweets (num, id, name, url, text, createdAt) VALUES(?,?,?,?,?,?)",
-      [num, id, name, url, text, createdAt]
-    )
-    .then((result) =>
-      db
-        .execute("SELECT * FROM tweets WHERE num=?", [result[0].insertId])
-        .then((newTweet) => newTweet[0][0])
-    );
+  const newTweet = {
+    num,
+    id,
+    name,
+    url,
+    text,
+    createdAt,
+  };
+  return getTweets()
+    .insertOne(newTweet)
+    .then(async (result) => {
+      const tweet = await getByMgObjectId(result.insertedId);
+      return tweet;
+    });
 }
 
 export async function update(num, text) {
-  // const originData = tweets.find((tweet) => tweet.num === num);
-  // originData.text = text;
-  // return originData;
-  return db
-    .execute("UPDATE tweets SET text=? WHERE num=?", [text, num])
-    .then(() =>
-      db
-        .execute("SELECT * FROM tweets WHERE num=?", [num])
-        .then((newTweet) => newTweet[0][0])
-    );
+  return getTweets() //
+    .findOneAndUpdate(
+      { num }, //
+      { $set: { text } }, //
+      { returnDocument: "after" } //
+    ) //
+    .then((result) => {
+      return result.value;
+    });
 }
 
 export async function remove(num) {
-  // tweets = tweets.filter((tweet) => tweet.num !== num);
-  // return tweets;
-  return db
-    .execute("DELETE FROM tweets WHERE num=?", [num])
-    .then(() => console.log("Delete Success!"));
+  return getTweets()
+    .deleteOne({ num })
+    .then(async () => {
+      const tweets = await getAll();
+      return tweets;
+    });
 }
