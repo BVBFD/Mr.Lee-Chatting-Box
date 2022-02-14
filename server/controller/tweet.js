@@ -34,7 +34,9 @@ export async function createTweet(req, res, next) {
 
 export async function updateTweet(req, res, next) {
   const num = req.params.num;
+  console.log(num);
   const text = req.body.text;
+  console.log(text);
   const originData = await tweetRepository.update(num, text);
   console.log(originData);
   if (originData) {

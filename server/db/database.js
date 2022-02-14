@@ -1,18 +1,27 @@
-import MongoDb from "mongodb";
+import Mongoose from "mongoose";
 import { config } from "../config.js";
 
-let db;
 export async function connectDB() {
-  return MongoDb.MongoClient.connect(config.db.host) //
-    .then((client) => {
-      db = client.db();
-    });
+  return Mongoose.connect(config.db.host);
+  // { useNewUrlParser: true,
+  // useUnifiedTopology: true,
+  // useFindAndModify: false, }
+  // mongoose 6.0 이하는 위 옵션 추가 했음.
 }
 
-export function getUsers() {
-  return db.collection("loginDatas");
+export function useVirtualId(schema) {
+  schema.virtual("dbId").get(function () {
+    return this._id.toString();
+  });
+  schema.set("toJSON", { virtuals: true });
+  schema.set("toObject", { virtuals: true });
 }
 
-export function getTweets() {
-  return db.collection("tweets");
-}
+// let db;
+// export function getUsers() {
+//   return db.collection("loginDatas");
+// }
+
+// export function getTweets() {
+//   return db.collection("tweets");
+// }
