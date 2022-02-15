@@ -18,6 +18,17 @@ export default class TweetService {
       method: "DELETE",
       headers: this.getHeader(),
     });
+    // ex) Network 통신 예제!
+    // const query = username ? `?username=${username}` : "";
+    // const response = await fetch(`${this.baseURL}/tweets${query}`, {
+    //   method: "GET",
+    //   headers: { "Content-Type": "application/json" },
+    // });
+    // const data = await response.json();
+    // if (response.status !== 200) {
+    //   throw new Error(data.message);
+    // }
+    // return data;
   }
 
   async getTweet() {

@@ -17,6 +17,8 @@ export default class HttpClient {
     } catch (error) {
       console.error(error);
     }
+    // 요청 req의 response에 body가 없으면 error가 발생할수도 있으니깐
+    // 에러처리를 해준다.
 
     if (response.status > 299 || response.status < 200) {
       const message =
