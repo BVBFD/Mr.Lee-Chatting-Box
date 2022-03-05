@@ -25,7 +25,11 @@ const tweetService = new TweetService(httpClient, tokenStorage, socketClient);
 
 ReactDOM.render(
   <BrowserRouter>
-    <App tweetService={tweetService} authService={authService} />
+    <App
+      tweetService={tweetService}
+      authService={authService}
+      tokenStorage={tokenStorage}
+    />
   </BrowserRouter>,
   document.getElementById("root")
 );

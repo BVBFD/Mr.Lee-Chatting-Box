@@ -5,7 +5,7 @@ import AllTweets from "./pages/AllTweets.jsx";
 import MyTweets from "./pages/MyTweets.jsx";
 import Header from "./components/Header.jsx";
 
-const App = ({ authService, tweetService }) => {
+const App = ({ authService, tweetService, tokenStorage }) => {
   const user = localStorage.getItem("user");
 
   return (
@@ -17,7 +17,7 @@ const App = ({ authService, tweetService }) => {
           element={
             user && (
               <>
-                <Header authService={authService} />
+                <Header authService={authService} tokenStorage={tokenStorage} />
                 <AllTweets
                   authService={authService}
                   tweetService={tweetService}

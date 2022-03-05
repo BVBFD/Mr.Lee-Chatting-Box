@@ -14,6 +14,10 @@ export default class TokenStorage {
     return localStorage.getItem(TOKEN);
   }
 
+  getUser() {
+    return localStorage.getItem(USER);
+  }
+
   clearToken() {
     localStorage.clear(TOKEN);
     localStorage.clear(USER);

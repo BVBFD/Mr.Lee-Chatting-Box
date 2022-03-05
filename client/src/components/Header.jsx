@@ -2,19 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Header = () => {
-  const [id, setId] = useState("");
+const Header = ({ tokenStorage }) => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
-    setUser(localStorage.getItem("user"));
-    setId(user);
-    return () => setId("");
+    setUser(tokenStorage.getUser());
+    return () => setUser("");
   }, [user]);
 
   const clearLoginDataLocalStorage = () => {
-    localStorage.clear("token");
-    localStorage.clear("user");
+    tokenStorage.clearToken();
   };
 
   return (
@@ -25,10 +22,10 @@ const Header = () => {
       </div>
 
       <nav>
-        <Link to={`/${id}/alltweets`}>
+        <Link to={`/${user}/alltweets`}>
           <span>All Tweets</span>
         </Link>
-        <Link to={`/${id}/mytweets`}>
+        <Link to={`/${user}/mytweets`}>
           <span>My Tweets</span>
         </Link>
         <Link onClick={clearLoginDataLocalStorage} to={"/"}>
