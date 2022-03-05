@@ -13,9 +13,8 @@ const AllTweets = ({ tweetService, authService }) => {
     tweetService
       .getTweet()
       .then((tweets) => {
-        tweets.reverse();
         tweetService.onSync((tweets) => {
-          setAllTweets(tweets);
+          setAllTweets(tweets.reverse());
         });
         setAllTweetsLength(tweets.length);
       })
@@ -24,6 +23,7 @@ const AllTweets = ({ tweetService, authService }) => {
       setAllTweets([]);
     };
   }, [user, tweetService, allTweetsLength]);
+  console.log(allTweets);
 
   return (
     <>
