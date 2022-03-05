@@ -1,13 +1,13 @@
 import Mongoose from "mongoose";
 import { config } from "../config.js";
 
-export async function connectDB() {
-  return Mongoose.connect(config.db.host);
-  // { useNewUrlParser: true,
-  // useUnifiedTopology: true,
-  // useFindAndModify: false, }
-  // mongoose 6.0 이하는 위 옵션 추가 했음.
-}
+// export async function connectDB() {
+//   return Mongoose.connect(config.db.host);
+// { useNewUrlParser: true,
+// useUnifiedTopology: true,
+// useFindAndModify: false, }
+// mongoose 6.0 이하는 위 옵션 추가 했음.
+// }
 
 export function useVirtualId(schema) {
   schema.virtual("dbId").get(function () {

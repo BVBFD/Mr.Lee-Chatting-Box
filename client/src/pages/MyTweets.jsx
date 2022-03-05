@@ -7,7 +7,6 @@ const MyTweets = ({ tweetService }) => {
   const [myTweets, setMyTweets] = useState([]);
   const [myTweetsLength, setMyTweetsLength] = useState();
   const { id } = useParams();
-  console.log(myTweetsLength);
 
   useEffect(() => {
     tweetService
@@ -15,11 +14,9 @@ const MyTweets = ({ tweetService }) => {
       .then((tweets) => {
         setMyTweets(tweets);
         setMyTweetsLength(tweets.length);
-        console.log(myTweets);
       })
       .catch((err) => console.log(err));
   }, [id, myTweetsLength]);
-  console.log(myTweets);
 
   return (
     <>

@@ -6,7 +6,11 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app"
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "16.5.0",
+    "npm": "7.19.1"
   },
   "author": "Lee Seong Eun",
   "license": "ISC",

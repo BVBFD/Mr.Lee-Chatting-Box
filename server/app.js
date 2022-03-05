@@ -5,9 +5,10 @@ import "express-async-errors";
 import morgan from "morgan";
 import loginRouter from "./router/login.js";
 import tweetsRouter from "./router/tweets.js";
-import { config } from "./config.js";
+// import { config } from "./config.js";
 import { initSocketIO } from "./connection/socket.js";
-import { connectDB } from "./db/database.js";
+import mongoose from "mongoose";
+// import { connectDB } from "./db/database.js";
 // import { Server } from "socket.io";
 
 const app = express();
@@ -37,10 +38,11 @@ app.use((error, req, res, next) => {
 //   socketIO.emit("dwitter", "New Tweet");
 // });
 
-connectDB()
+mongoose
+  .connect(process.env.DB_HOST)
   .then(() => {
     console.log("Init!!");
-    const server = app.listen(config.host.localHost);
+    const server = app.listen(process.env.PORT || 4000);
     initSocketIO(server);
   })
   .catch(console.error);

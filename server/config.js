@@ -18,7 +18,7 @@ export const config = {
     jwtExpires: parseInt(required("JWT_EXPIRES", 172800)),
   },
   host: {
-    localHost: parseInt(required("LOCAL_HOST", 4000)),
+    localHost: parseInt(required("PORT", 4000)),
   },
   db: {
     host: required("DB_HOST"),

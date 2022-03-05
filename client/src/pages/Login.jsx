@@ -15,7 +15,7 @@ const Login = ({ authService }) => {
       .then(() => {
         navigate(`/${id}/alltweets`);
       })
-      .catch(console.error);
+      .catch((err) => console.log(err));
   };
 
   const signUp = (event) => {
@@ -29,7 +29,7 @@ const Login = ({ authService }) => {
     authService
       .postLoginData(id, password, name, email, url)
       .then((alert) => alert)
-      .catch(console.error);
+      .catch((err) => console.log(err));
     setInUpBtnIndex(false);
     checkBox.checked = false;
     navigate("/");

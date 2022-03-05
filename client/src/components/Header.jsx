@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Header = ({ tokenStorage }) => {
+const Header = memo(({ tokenStorage }) => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -34,6 +34,6 @@ const Header = ({ tokenStorage }) => {
       </nav>
     </header>
   );
-};
+});
 
 export default Header;
