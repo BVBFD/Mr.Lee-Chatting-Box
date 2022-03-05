@@ -1,10 +1,20 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const Header = ({ authService }) => {
-  const { id } = useParams();
+const Header = () => {
+  const [id, setId] = useState("");
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    setUser(localStorage.getItem("user"));
+    setId(user);
+    return () => setId("");
+  }, [user]);
+
   const clearLoginDataLocalStorage = () => {
-    authService.tokenStorage.clearToken();
+    localStorage.clear("token");
+    localStorage.clear("user");
   };
 
   return (

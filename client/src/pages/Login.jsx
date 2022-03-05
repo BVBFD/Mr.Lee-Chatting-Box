@@ -1,16 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useEffect } from "react";
 
-const Login = ({ authService, setUser }) => {
+const Login = ({ authService }) => {
   let [inUpBtnIndex, setInUpBtnIndex] = useState(false);
-  let [loginData, setLoginData] = useState([]);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setLoginData(authService.loginData);
-  }, [loginData]);
 
   const signIn = (event) => {
     event.preventDefault();
@@ -18,9 +12,8 @@ const Login = ({ authService, setUser }) => {
     const password = document.querySelector("input[name=password]").value;
     authService
       .getLoginData(id, password)
-      .then((data) => {
+      .then(() => {
         navigate(`/${id}/alltweets`);
-        setUser(data);
       })
       .catch(console.error);
   };

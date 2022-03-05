@@ -40,7 +40,8 @@ export default class AuthService {
       throw new Error(loginData.message);
     } else {
       this.tokenStorage.saveToken(loginData.token);
-      return loginData.data;
+      this.tokenStorage.saveId(loginData.others.id);
+      return loginData;
     }
   }
 

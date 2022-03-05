@@ -10,8 +10,8 @@ export async function getLoginDataName(req, res, next) {
   if (!data) {
     return res.status(404).json({ message: `invalid ID and Password!` });
   }
-  delete data.password;
-  res.status(200).json({ data });
+  const { password, ...others } = data._doc;
+  res.status(200).json({ others });
 }
 
 export async function getLoginData(req, res, next) {
@@ -26,8 +26,8 @@ export async function getLoginData(req, res, next) {
     return res.status(404).json({ message: `invalid ID and Password!` });
   }
   const token = createJwtToken(id);
-  delete data.password;
-  res.status(200).json({ token, data });
+  const { password, ...others } = data._doc;
+  res.status(200).json({ token, others });
 }
 
 export async function signUpLoginData(req, res, next) {
@@ -45,6 +45,8 @@ export async function signUpLoginData(req, res, next) {
     url: url.toString(),
   };
   await loginDataRepo.addData(newLoginData);
+  delete newLoginData.password;
+  console.log(newLoginData);
   res.status(201).json(newLoginData);
 }
 

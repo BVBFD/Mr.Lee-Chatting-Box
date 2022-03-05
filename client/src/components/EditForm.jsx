@@ -5,23 +5,27 @@ const EditForm = ({
   allTweets,
   tweetService,
   authService,
-  allTweetsLength,
   setAllTweetsLength,
 }) => {
-  const [text, setText] = useState();
-  const [name, setName] = useState();
-  const [url, setUrl] = useState();
-  const navigate = useNavigate();
+  const [text, setText] = useState("");
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+  // const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
     authService
       .getLoginDataName(id)
       .then((data) => {
-        setName(data.data.name);
-        setUrl(data.data.url);
+        console.log(data.others);
+        setName(data.others.name);
+        setUrl(data.others.url);
       })
       .catch((err) => console.log(err));
+    return () => {
+      setName("");
+      setUrl("");
+    };
   }, [authService]);
 
   const onUpdate = (event) => {

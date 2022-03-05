@@ -1,7 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import TweetCard from "./TweetCard";
 
 const Tweets = ({

@@ -1,11 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const TweetCard = ({
   tweet,
-  allTweetsLength,
   tweetService,
   setAllTweetsLength,
   setMyTweetsLength,
