@@ -12,8 +12,10 @@ const Login = ({ authService }) => {
     const password = document.querySelector("input[name=password]").value;
     authService
       .getLoginData(id, password)
-      .then(() => {
-        navigate(`/${id}/alltweets`);
+      .then((data) => {
+        window.location.replace(`/${data.others.id}/alltweets`);
+        // navigate(`/${data.others.id}/alltweets`);
+        // 로근인하고 다른 페이지로 안 넘어가는 렌더링 이슈가 있어서 window.locatin.replace로 대체
       })
       .catch((err) => console.log(err));
   };

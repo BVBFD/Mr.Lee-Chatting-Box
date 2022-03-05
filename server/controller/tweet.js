@@ -4,7 +4,7 @@ import * as tweetRepository from "../data/tweet.js";
 export async function getAllTweets(req, res, next) {
   const tweets = await tweetRepository.getAll();
   res.status(200).json(tweets);
-  getSocketIO().emit("tweets", tweets);
+  getSocketIO().emit("tweets", tweets.reverse());
 }
 
 export async function getTweetsById(req, res, next) {

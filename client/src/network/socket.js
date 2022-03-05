@@ -1,9 +1,9 @@
 import socket from "socket.io-client";
 
 export default class Socket {
-  constructor(baseURL, getAccessToken) {
+  constructor(baseURL, token) {
     this.io = new socket(baseURL, {
-      auth: (cb) => cb({ token: getAccessToken() }),
+      auth: (cb) => cb({ token }),
     });
 
     this.io.on("connect_error", (err) => {

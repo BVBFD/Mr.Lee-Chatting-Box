@@ -12,7 +12,6 @@ export default class HttpClient {
       },
     });
     let data;
-    console.log(data);
     if (data !== undefined) {
       try {
         data = await response.json();

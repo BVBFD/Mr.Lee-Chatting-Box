@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
-import jwt from "jsonwebtoken";
-import { config } from "../config.js";
+// import jwt from "jsonwebtoken";
+// import { config } from "../config.js";
 
 export class Socket {
   constructor(server) {
@@ -10,18 +10,18 @@ export class Socket {
       },
     });
 
-    this.io.use((socket, next) => {
-      const token = socket.handshake.auth.token;
-      if (!token) {
-        return next(new Error("Authentication error"));
-      }
-      jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
-        if (error) {
-          return next(new Error("Authentication error!"));
-        }
-        next();
-      });
-    });
+    // this.io.use((socket, next) => {
+    //   const token = socket.handshake.auth.token;
+    //   if (!token) {
+    //     return next(new Error("Authentication error!"));
+    //   }
+    //   jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
+    //     if (error) {
+    //       return next(new Error("Authentication error!"));
+    //     }
+    //     next();
+    //   });
+    // });
 
     this.io.on("connection", (socket) => {
       console.log("Socket client connected!");

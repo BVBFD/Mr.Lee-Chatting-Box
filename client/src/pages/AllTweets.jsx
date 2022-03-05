@@ -6,18 +6,15 @@ const AllTweets = memo(({ tweetService, authService }) => {
   const [allTweets, setAllTweets] = useState([]);
   const [allTweetsLength, setAllTweetsLength] = useState();
 
-  const [user, setUser] = useState("");
-
-  console.log(allTweets);
+  const [user, setUser] = useState(localStorage.getItem("user"));
 
   useEffect(
     useCallback(() => {
-      setUser(localStorage.getItem("user"));
       tweetService
         .getTweet()
         .then((tweets) => {
           tweetService.onSync((tweets) => {
-            setAllTweets(tweets.reverse());
+            setAllTweets(tweets);
           });
           setAllTweetsLength(tweets?.length);
         })

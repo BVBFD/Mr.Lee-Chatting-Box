@@ -38,7 +38,7 @@ const EditForm = memo(
           setAllTweetsLength(allTweets.length + 1);
           // setAllTweets(newTweets);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => window.alert(err));
     });
 
     const inputChange = (event) => {

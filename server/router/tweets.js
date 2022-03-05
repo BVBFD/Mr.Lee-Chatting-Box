@@ -8,7 +8,7 @@ import { isAuth } from "../middleware/isAuth.js";
 const tweetsRouter = express.Router();
 
 const validator = [
-  body("text").trim().isLength({ min: 3 }).withMessage("3글자 이상 입력하세요"),
+  body("text").trim().isLength({ min: 1 }).withMessage("3글자 이상 입력하세요"),
   validate,
 ];
 

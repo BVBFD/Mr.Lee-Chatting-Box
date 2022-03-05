@@ -19,7 +19,8 @@ const TweetCard = memo(
     const deleteTweet = useCallback(() => {
       tweetService
         .deleteTweet(tweet.num)
-        .then(() => {
+        .then((data) => {
+          console.log(data);
           setMyTweetsLength ? setMyTweetsLength(0) : setAllTweetsLength(0);
         })
         .catch((error) => console.log(error));
