@@ -1,12 +1,10 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
-import EditForm from "../components/EditForm";
-import Tweets from "../components/Tweets";
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import EditForm from '../components/EditForm';
+import Tweets from '../components/Tweets';
 
 const AllTweets = memo(({ tweetService, authService }) => {
   const [allTweets, setAllTweets] = useState([]);
   const [allTweetsLength, setAllTweetsLength] = useState();
-
-  const [user, setUser] = useState(localStorage.getItem("user"));
 
   useEffect(
     useCallback(() => {
@@ -20,7 +18,7 @@ const AllTweets = memo(({ tweetService, authService }) => {
         })
         .catch((err) => console.log(err));
     }),
-    [allTweetsLength]
+    [allTweets]
   );
 
   return (
@@ -31,6 +29,7 @@ const AllTweets = memo(({ tweetService, authService }) => {
         allTweets={allTweets}
         allTweetsLength={allTweetsLength}
         setAllTweetsLength={setAllTweetsLength}
+        setAllTweets={setAllTweets}
       />
       <Tweets
         allTweetsLength={allTweetsLength}

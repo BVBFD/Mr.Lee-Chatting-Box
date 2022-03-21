@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import TweetCard from "./TweetCard";
+import React, { memo } from 'react';
+import TweetCard from './TweetCard';
 
 const Tweets = memo(
   ({
@@ -10,9 +10,11 @@ const Tweets = memo(
     setMyTweetsLength,
   }) => {
     return (
-      <div className="tweetsBox">
-        {allTweets.map((tweet) => {
-          return (
+      <div className='tweetsBox'>
+        {allTweets?.map((tweet) => {
+          return tweet === undefined ? (
+            ''
+          ) : (
             <>
               <TweetCard
                 tweet={tweet}

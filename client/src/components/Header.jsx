@@ -1,23 +1,24 @@
-import React, { memo } from "react";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-const Header = memo(({ tokenStorage }) => {
-  const [user, setUser] = useState("");
+const Header = memo(() => {
+  const [user, setUser] = useState('');
 
   useEffect(() => {
-    setUser(tokenStorage.getUser());
-    return () => setUser("");
+    setUser(JSON.parse(localStorage.getItem('user')).id);
+    return () => setUser('');
   }, [user]);
 
   const clearLoginDataLocalStorage = () => {
-    tokenStorage.clearToken();
+    localStorage.clear('user');
+    localStorage.clear('token');
   };
 
   return (
-    <header className="header">
-      <div className="imgBox">
-        <img src="../img/logo.png" alt="" />
+    <header className='header'>
+      <div className='imgBox'>
+        <img src='../img/logo.png' alt='' />
         <h1>Academia</h1>
       </div>
 
@@ -28,7 +29,7 @@ const Header = memo(({ tokenStorage }) => {
         <Link to={`/${user}/mytweets`}>
           <span>My Tweets</span>
         </Link>
-        <Link onClick={clearLoginDataLocalStorage} to={"/"}>
+        <Link onClick={clearLoginDataLocalStorage} to={'/'}>
           <span>Log Out</span>
         </Link>
       </nav>

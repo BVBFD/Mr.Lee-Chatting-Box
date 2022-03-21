@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
-import Tweets from "../components/Tweets";
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Tweets from '../components/Tweets';
 
 const MyTweets = ({ tweetService }) => {
   const [myTweets, setMyTweets] = useState([]);
@@ -13,7 +13,7 @@ const MyTweets = ({ tweetService }) => {
       .getTweetById(id)
       .then((tweets) => {
         setMyTweets(tweets);
-        setMyTweetsLength(tweets.length);
+        setMyTweetsLength(tweets?.length);
       })
       .catch((err) => console.log(err));
   }, [id, myTweetsLength]);

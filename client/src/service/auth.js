@@ -1,15 +1,14 @@
 export default class AuthService {
-  constructor(baseURL, tokenStorage) {
+  constructor(baseURL) {
     this.baseURL = baseURL;
-    this.tokenStorage = tokenStorage;
   }
 
   async getLoginDataName(id) {
     const response = await fetch(
       `${this.baseURL}/login/getLoginDataName?id=${id}`,
       {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({
           id,
         }),
@@ -27,8 +26,8 @@ export default class AuthService {
     const response = await fetch(
       `${this.baseURL}/login/getLoginData?id=${id}`,
       {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
         body: JSON.stringify({
           id,
           password,
@@ -39,16 +38,16 @@ export default class AuthService {
     if (response.status !== 200) {
       throw new Error(loginData.message);
     } else {
-      this.tokenStorage.saveToken(loginData.token);
-      this.tokenStorage.saveId(loginData.others.id);
+      localStorage.setItem('token', loginData.token);
+      localStorage.setItem('user', loginData.others.id);
       return loginData;
     }
   }
 
   async postLoginData(id, password, name, email, url) {
     const response = await fetch(`${this.baseURL}/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         id,
         password,
@@ -61,7 +60,7 @@ export default class AuthService {
     if (response.status !== 201) {
       throw new Error(result.message);
     }
-    window.alert("You have created your ID!!");
+    window.alert('You have created your ID!!');
     return result;
   }
 }

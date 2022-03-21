@@ -1,6 +1,7 @@
-import React, { memo, useCallback } from "react";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { memo, useCallback } from 'react';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { format } from 'timeago.js';
 
 const TweetCard = memo(
   ({ tweet, tweetService, setAllTweetsLength, setMyTweetsLength }) => {
@@ -47,40 +48,40 @@ const TweetCard = memo(
     };
 
     return (
-      <div className="tweetCard">
-        <div className="userImgInfoBox">
-          <img src={tweet.url} alt="" />
-          <span>{tweet.name}</span>
-          <span>@{tweet.id}</span>
-          <span>on {tweet.createdAt}</span>
+      <div className='tweetCard'>
+        <div className='userImgInfoBox'>
+          <img src={tweet?.url} alt='' />
+          <span>{tweet?.name}</span>
+          <span>@{tweet?.id}</span>
+          <span>{format(tweet?.createdAt)}</span>
         </div>
-        <div className="textBox">
-          <p>{tweet.text}</p>
+        <div className='textBox'>
+          <p>{tweet?.text}</p>
         </div>
         {openEditBoxIndex && (
-          <form action="" className="updateForm">
+          <form action='' className='updateForm'>
             <input
               onChange={onTextChange}
-              type="text"
-              className="updateInput"
+              type='text'
+              className='updateInput'
             />
-            <div className="btnBox">
-              <button onClick={onUpdate} className="onUpdateBtn">
+            <div className='btnBox'>
+              <button onClick={onUpdate} className='onUpdateBtn'>
                 update
               </button>
-              <button onClick={onCancel} className="cancelBtn">
+              <button onClick={onCancel} className='cancelBtn'>
                 cancel
               </button>
             </div>
           </form>
         )}
-        {tweet.id === id && (
-          <button onClick={deleteTweet} className="deleteBtn">
+        {tweet?.id === id && (
+          <button onClick={deleteTweet} className='deleteBtn'>
             x
           </button>
         )}
-        {tweet.id === id && (
-          <button onClick={openEditBox} className="updateBtn">
+        {tweet?.id === id && (
+          <button onClick={openEditBox} className='updateBtn'>
             ✎
           </button>
         )}

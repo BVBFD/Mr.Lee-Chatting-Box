@@ -1,23 +1,23 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import AllTweets from "./pages/AllTweets.jsx";
-import MyTweets from "./pages/MyTweets.jsx";
-import Header from "./components/Header.jsx";
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Login from './pages/Login.jsx';
+import AllTweets from './pages/AllTweets.jsx';
+import MyTweets from './pages/MyTweets.jsx';
+import Header from './components/Header.jsx';
 
-const App = ({ authService, tweetService, tokenStorage }) => {
-  const user = localStorage.getItem("user");
+const App = ({ authService, tweetService }) => {
+  const user = localStorage.getItem('user');
 
   return (
-    <div className="app">
+    <div className='app'>
       <Routes>
-        <Route path={"/"} element={<Login authService={authService} />} />
+        <Route path={'/'} element={<Login authService={authService} />} />
         <Route
-          path={"/:id/alltweets"}
+          path={'/:id/alltweets'}
           element={
             user && (
               <>
-                <Header authService={authService} tokenStorage={tokenStorage} />
+                <Header authService={authService} />
                 <AllTweets
                   authService={authService}
                   tweetService={tweetService}
@@ -27,7 +27,7 @@ const App = ({ authService, tweetService, tokenStorage }) => {
           }
         />
         <Route
-          path={"/:id/mytweets"}
+          path={'/:id/mytweets'}
           element={
             <>
               <Header />
