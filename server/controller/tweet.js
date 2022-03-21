@@ -3,7 +3,7 @@ import * as tweetRepository from '../data/tweet.js';
 
 export async function getAllTweets(req, res, next) {
   const tweets = await tweetRepository.getAll();
-  res.status(200).json(tweets.reverse());
+  res.status(200).json(tweets);
   getSocketIO().emit('tweets', tweets.reverse());
 }
 
