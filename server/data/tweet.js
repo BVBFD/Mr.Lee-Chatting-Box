@@ -18,13 +18,13 @@
 // ];
 
 // import { db } from "../db/database.js";
-import SQ from "sequelize";
-import { sequelize } from "../db/database.js";
+import SQ from 'sequelize';
+import { sequelize } from '../db/database.js';
 
 const DataTypes = SQ.DataTypes;
 
 const Tweets = sequelize.define(
-  "tweets",
+  'tweets',
   {
     num: {
       type: DataTypes.INTEGER,
@@ -55,7 +55,7 @@ const Tweets = sequelize.define(
 export async function getAll() {
   // return tweets;
   // return db.execute("SELECT * FROM tweet").then((tweets) => tweets[0]);
-  return Tweets.findAll({ order: [["num", "DESC"]] });
+  return Tweets.findAll({ order: [['num', 'DESC']] });
 }
 
 export async function getAllById(id) {
@@ -64,7 +64,7 @@ export async function getAllById(id) {
   // return db
   //   .execute("SELECT * FROM tweet WHERE id=?", [id])
   //   .then((tweets) => tweets[0]);
-  return Tweets.findAll({ order: [["num", "DESC"]] }, { where: { id } });
+  return Tweets.findAll({ order: [['num', 'DESC']] }, { where: { id } });
 }
 
 export async function create(num, id, name, url, text, createdAt) {
