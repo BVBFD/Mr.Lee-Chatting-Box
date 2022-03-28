@@ -17,13 +17,18 @@ export const config = {
     jwtSecret: required('JWT_SECRET'),
     jwtExpires: parseInt(required('JWT_EXPIRES', 172800)),
   },
-  host: {
-    port: parseInt(required('PORT', 4000)),
-  },
+
+  port: parseInt(required('PORT', 4000)),
+
   db: {
     host: required('DB_HOST'),
     user: required('DB_USER'),
     database: required('DB_DATABASE'),
     password: required('DB_PASSWORD'),
+    port: required('DB_PORT'),
+  },
+
+  cors: {
+    allowedOrigin: required('CORS_ALLOW_ORIGIN'),
   },
 };

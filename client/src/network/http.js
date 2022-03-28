@@ -6,8 +6,11 @@ export default class HttpClient {
   async fetch(url, options) {
     const response = await fetch(`${this.baseURL}/tweets/${url}`, {
       ...options,
+      mode: 'cors',
+      credentials: 'include',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
+        Origin: 'https://academiachattingsequelize.netlify.app',
         ...options.headers,
       },
     });
@@ -20,7 +23,7 @@ export default class HttpClient {
 
     if (response.status > 299 || response.status < 200) {
       const message =
-        data && data.message ? data.message : "Something went wrong!";
+        data && data.message ? data.message : 'Something went wrong!';
       throw new Error(message);
     }
     return data;

@@ -12,8 +12,14 @@ import { sequelize } from './db/database.js';
 
 const app = express();
 
+const corsOption = {
+  origin: config.cors.allowedOrigin,
+  optionsSuccessStatus: 200,
+  credentials: true,
+};
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOption));
 app.use(helmet());
 app.use(morgan('tiny'));
 
@@ -28,7 +34,8 @@ app.use((error, req, res, next) => {
 
 // db.getConnection().then(() => console.log("DB connection success!"));
 sequelize.sync().then(() => {
-  const server = app.listen(config.host.port);
+  console.log(`Server is started...${new Date()}`);
+  const server = app.listen(config.port);
   initSocketIO(server);
 });
 // const socketIO = new Server(server, {
