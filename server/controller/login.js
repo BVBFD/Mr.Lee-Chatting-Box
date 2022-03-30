@@ -1,8 +1,8 @@
-import * as loginDataRepo from "../data/login.js";
-import bcrypt from "bcrypt";
-import {} from "express-async-errors";
-import jwt from "jsonwebtoken";
-import { config } from "../config.js";
+import * as loginDataRepo from '../data/login.js';
+import bcrypt from 'bcrypt';
+import {} from 'express-async-errors';
+import jwt from 'jsonwebtoken';
+import { config } from '../config.js';
 
 export async function getLoginDataName(req, res, next) {
   const id = req.query.id;
@@ -26,6 +26,19 @@ export async function getLoginData(req, res, next) {
     return res.status(404).json({ message: `invalid ID and Password!` });
   }
   const token = createJwtToken(id);
+  const options = {
+    maxAge: config.jwt.jwtExpires * 1000,
+    // 밀리 세컨드 기준임
+    // 토큰 영원히 보관하는 것이 아니라 일정시간 지난 후 폐기
+    httpOnly: true,
+    // http로 전달해야함
+    sameSite: 'none',
+    // cors 허용
+    secure: true,
+    // cors 허용에 따른 보안 설정 true
+  };
+
+  res.cookie('token', token, options);
   res.status(200).json({ token, data });
 }
 

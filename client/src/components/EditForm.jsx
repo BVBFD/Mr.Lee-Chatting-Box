@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const EditForm = ({
   allTweets,
@@ -49,8 +49,8 @@ const EditForm = ({
 
   return (
     <>
-      <form className="editForm" action="" onSubmit={onUpdate}>
-        <input type="text" onChange={inputChange} />
+      <form className='editForm' action='' onSubmit={onUpdate}>
+        <input type='text' onChange={inputChange} />
         <button>POST</button>
       </form>
     </>

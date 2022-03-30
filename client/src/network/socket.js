@@ -1,13 +1,16 @@
-import socket from "socket.io-client";
+import socket from 'socket.io-client';
+import { Cookies } from 'react-cookie';
 
 export default class Socket {
-  constructor(baseURL, getAccessToken) {
+  constructor(baseURL) {
+    this.cookies = new Cookies();
+
     this.io = new socket(baseURL, {
-      auth: (cb) => cb({ token: getAccessToken() }),
+      auth: (cb) => cb({ token: this.cookies.get('token') }),
     });
 
-    this.io.on("connect_error", (err) => {
-      console.log("socket error", err.message);
+    this.io.on('connect_error', (err) => {
+      console.log('socket error', err.message);
     });
   }
 

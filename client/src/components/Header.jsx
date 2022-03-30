@@ -1,16 +1,18 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { Cookies } from 'react-cookie';
 
 const Header = ({ authService }) => {
   const { id } = useParams();
+  const cookies = new Cookies();
   const clearLoginDataLocalStorage = () => {
-    authService.tokenStorage.clearToken();
+    cookies.remove('token');
   };
 
   return (
-    <header className="header">
-      <div className="imgBox">
-        <img src="../img/logo.png" alt="" />
+    <header className='header'>
+      <div className='imgBox'>
+        <img src='../img/logo.png' alt='' />
         <h1>Academia</h1>
       </div>
 
@@ -21,7 +23,7 @@ const Header = ({ authService }) => {
         <Link to={`/${id}/mytweets`}>
           <span>My Tweets</span>
         </Link>
-        <Link onClick={clearLoginDataLocalStorage} to={"/"}>
+        <Link onClick={clearLoginDataLocalStorage} to={'/'}>
           <span>Log Out</span>
         </Link>
       </nav>

@@ -1,10 +1,10 @@
-import { getSocketIO } from "../connection/socket.js";
-import * as tweetRepository from "../data/tweet.js";
+import { getSocketIO } from '../connection/socket.js';
+import * as tweetRepository from '../data/tweet.js';
 
 export async function getAllTweets(req, res, next) {
   const tweets = await tweetRepository.getAll();
   res.status(200).json(tweets);
-  getSocketIO().emit("tweets", tweets);
+  getSocketIO().emit('tweets', tweets);
 }
 
 export async function getTweetsById(req, res, next) {
@@ -13,9 +13,9 @@ export async function getTweetsById(req, res, next) {
   if (filteredTweets) {
     res.status(200).json(filteredTweets);
   } else if (!filteredTweets) {
-    res.status(200).json("There is no your tweet at all!");
+    res.status(200).json('There is no your tweet at all!');
   } else {
-    res.status(404).json("Not Found!");
+    res.status(404).json('Not Found!');
   }
 }
 

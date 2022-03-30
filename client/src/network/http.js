@@ -7,12 +7,12 @@ export default class HttpClient {
     const response = await fetch(`${this.baseURL}/tweets/${url}`, {
       ...options,
       mode: 'cors',
-      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
         Origin: 'https://academiachattingsequelize.netlify.app',
         ...options.headers,
       },
+      credentials: 'include',
     });
     let data;
     try {

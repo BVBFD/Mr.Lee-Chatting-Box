@@ -1,13 +1,16 @@
+import { Cookies } from 'react-cookie';
+
 export default class TweetService {
-  constructor(http, tokenStorage, socket) {
+  constructor(http, socket) {
     this.http = http;
-    this.tokenStorage = tokenStorage;
+    // this.tokenStorage = tokenStorage;
     this.socket = socket;
+    this.cookies = new Cookies();
   }
 
   async updateTweet(num, text) {
     return this.http.fetch(`${num}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: this.getHeader(),
       body: JSON.stringify({ text }),
     });
@@ -15,28 +18,28 @@ export default class TweetService {
 
   async deleteTweet(num) {
     return this.http.fetch(`${num}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: this.getHeader(),
     });
   }
 
   async getTweet() {
     return this.http.fetch(``, {
-      method: "GET",
+      method: 'GET',
       headers: this.getHeader(),
     });
   }
 
   async getTweetById(id) {
     return this.http.fetch(`${id}`, {
-      method: "GET",
+      method: 'GET',
       headers: this.getHeader(),
     });
   }
 
   async postTweet(num, id, name, url, text, createdAt) {
     return this.http.fetch(``, {
-      method: "POST",
+      method: 'POST',
       headers: this.getHeader(),
       body: JSON.stringify({
         num,
@@ -50,13 +53,13 @@ export default class TweetService {
   }
 
   getHeader() {
-    const token = this.tokenStorage.getToken();
+    const token = this.cookies.get('token');
     return {
       Authorization: `Bearer ${token}`,
     };
   }
 
   onSync(callback) {
-    return this.socket.onSync("tweets", callback);
+    return this.socket.onSync('tweets', callback);
   }
 }
